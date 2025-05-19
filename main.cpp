@@ -1696,6 +1696,7 @@ bool only_one_update_mix_draw=false;
 int main(int argc, char *argv[]) {
     set_args(argc, argv);
     static int frame_count=0;
+    static int init_display_hide=0;
     bool hide__osd_pos_init_sys=true;
     const auto app_name = "Image Processing System (BUAA) - ProcessorZYNQ";
     bool allow_invalid_device = std::stoi(parse_arg("allow_invalid_device", "0"));
@@ -1721,7 +1722,7 @@ int main(int argc, char *argv[]) {
     log_info("%s (%s %s)", app_name, __DATE__, __TIME__);
     log_info("Command line: %s", join(argc, argv, " ").c_str());
 
-    const auto software_version = "Version 0.1.0.0, 2024-12-18";
+    const auto software_version = "WM-AVT Version 0.1.0.0, 2025-05-19(released by zhangyuanwei";
     log_info("%s", software_version);
 #ifdef OS_UNIX
     // video_init();
@@ -4580,15 +4581,21 @@ int main(int argc, char *argv[]) {
 
             // sys_init_info display
 //            printf("disp_out_cnt %d",disp_out_cnt);
-            if (work_mode != HostUARTDevice::instance()->work_mode||(disp_out_cnt>=900&&hide__osd_pos_init_sys))
+            if (work_mode != HostUARTDevice::instance()->work_mode)
             {
             	std::cout << "work_mode: " << work_mode
             	          << ", HostUARTDevice::instance()->work_mode: "
             	          << HostUARTDevice::instance()->work_mode
             	          << std::endl;
-                if((work_mode == 0x01 && HostUARTDevice::instance()->work_mode != 0x01) ||disp_out_cnt>=900)
+            	if(hide__osd_pos_init_sys)
+            	{
+            	init_display_hide++;
+            	}
+                if(work_mode == 0x01 && HostUARTDevice::instance()->work_mode != 0x01||init_display_hide>=300)
                 {
 // #ifdef update_sys_init_debug
+                	std::cout<<"init_display_hide"<<init_display_hide<<std::endl;
+                	hide__osd_pos_init_sys=false;
                     init_count = 0;
                     for(int i = 0; i < 6; i++)
                     {
@@ -4616,7 +4623,7 @@ int main(int argc, char *argv[]) {
                     if(init_count < 6)
                     {
                         osd_pos_init_sys[init_count].config.para.Enable = 1;
-                        hide__osd_pos_init_sys=false;
+//                        hide__osd_pos_init_sys=false;
                         for(int j = 0; j < 32; j++)
                         {
                             if(j < HostUARTDevice::instance()->init_status_cache.front().size())
@@ -4633,6 +4640,7 @@ int main(int argc, char *argv[]) {
                         osd_pos_init_sys[init_count].str_arr = osd_system_init_info;
                         update_OSD_chinese(osd_pos_init_sys[init_count], OSD_BRAM_HANDLE);
                         HostUARTDevice::instance()->init_status_cache.pop();
+                        printf("start init display");
                     }
                     else
                     {
@@ -4684,6 +4692,7 @@ int main(int argc, char *argv[]) {
             }
             if(init_count==12)
             {
+            	hide__osd_pos_init_sys=false;
                 init_count = 0;
                 for(int i = 0; i < 6; i++)
                 {
@@ -8037,7 +8046,7 @@ int main(int argc, char *argv[]) {
                 // flight longtitude
                 for(i=0; i<11; i++)
                     sdi_first_line[42+i] = HostUARTDevice::instance()->aircraft_longitude_str[i];
-                // flight latitude
+                // flight latitudes
                 for(i=0; i<11; i++)
                     sdi_first_line[53+i] = HostUARTDevice::instance()->aircraft_latitude_str[i];
                 // flight altitude
@@ -8091,13 +8100,13 @@ int main(int argc, char *argv[]) {
             int i;
             //year
             for(i=0; i<4; i++)
-                sdi_first_line[i] = HostUARTDevice::instance()->date_str[6+i];
+                sdi_first_line[i] = HostUARTDevice::instance()->date_str[i];
             // month
             for(i=0; i<2; i++)
-                sdi_first_line[4+i] = HostUARTDevice::instance()->date_str[3+i];
+                sdi_first_line[4+i] = HostUARTDevice::instance()->date_str[5+i];
             // day
             for(i=0; i<2; i++)
-                sdi_first_line[6+i] = HostUARTDevice::instance()->date_str[i];
+                sdi_first_line[6+i] = HostUARTDevice::instance()->date_str[8+i];
             // hour
             for(i=0; i<2; i++)
                 sdi_first_line[8+i] = HostUARTDevice::instance()->time_str[i];
@@ -8153,9 +8162,9 @@ int main(int argc, char *argv[]) {
             // sensor mode
             intToAscii( &sdi_first_line[0], 110, HostUARTDevice::instance()->work_mode, 3);
             //sensor yaw
-            intToAscii( &sdi_first_line[0], 113, HostUARTDevice::instance()->yaw, 6);
+            intToAscii( &sdi_first_line[0], 113, HostUARTDevice::instance()->pitch, 6);
             //sensor pitch
-            intToAscii( &sdi_first_line[0], 119, HostUARTDevice::instance()->pitch, 6);
+            intToAscii( &sdi_first_line[0], 119, HostUARTDevice::instance()->yaw, 6);
             //sensor roll
             intToAscii( &sdi_first_line[0], 125, HostUARTDevice::instance()->flight_roll, 6);
             // laser meassure distance
@@ -8182,32 +8191,33 @@ int main(int argc, char *argv[]) {
 					{
 						printf("%c",sdi_first_line[i]);
 					}
-					printf("-");//mon
+//					printf("-");//mon
 					for(int i = 4;i<6;i++)
 					{
 						printf("%c",sdi_first_line[i]);
 					}
-					printf("-");//day
+//					printf("-");//day
 					for(int i = 6;i<8;i++)
 					{
 						printf("%c",sdi_first_line[i]);
 					}
-					printf("-");//h
+					printf(" ");//
+//					printf("-");//h
 					for(int i = 8;i<10;i++)
 					{
 						printf("%c",sdi_first_line[i]);
 					}
-					printf(":");//min
+//					printf(":");//min
 					for(int i = 10;i<12;i++)
 					{
 						printf("%c",sdi_first_line[i]);
 					}
-					printf(":");//s
+//					printf(":");//s
 					for(int i = 12;i<14;i++)
 					{
 						printf("%c",sdi_first_line[i]);
 					}
-					printf(":");//millisecond
+//					printf(":");//millisecond
 					for(int i = 14;i<17;i++)
 					{
 						printf("%c",sdi_first_line[i]);
@@ -8298,12 +8308,12 @@ int main(int argc, char *argv[]) {
 					{
 						printf("%c",sdi_first_line[i]);
 					}
-					printf(" sensor_yaw:");//
+					printf(" sensor_pitch:");//
 					for(int i = 113;i<119;i++)
 					{
 						printf("%c",sdi_first_line[i]);
 					}
-					printf(" sensor_pitch:");//
+					printf(" sensor_yaw:");//
 					for(int i = 119;i<125;i++)
 					{
 						printf("%c",sdi_first_line[i]);

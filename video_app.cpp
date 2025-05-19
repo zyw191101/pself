@@ -1957,7 +1957,7 @@ void update_north_arrow(float north_angle, int color_Y, int color_U, int color_V
 //		}config;
 //	}sdi_info;
 //	sdi_info for_write;
-	#define printf_report_multi_promote
+//	#define printf_report_multi_promote
 	#ifdef printf_report_multi_promote
 		static int cnt_printf = 0;
 	#endif

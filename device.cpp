@@ -522,7 +522,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 
     }else
     {
-    printf("command_id %x\n",command_id);
+//    printf("command_id %x\n",command_id);
     if(command_id==0x16)
     {
     	        printf("params: ");
@@ -2153,11 +2153,27 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
     	int byte_index = 0;
 		uint8_t location_id;
 		PARSE_DATA_LE(params, &location_id);
-        printf("location_id %x\n",location_id);
+		//-------------------------------------------------------------
+//        printf("location_id %x\n",location_id);
+//		const uint8_t* raw_data_ptr = params;
+//		printf("Raw params bytes (hex): ");
+//		for (int i = 0; i < 10; i++) {
+//			printf("%02X ", raw_data_ptr[i]); // 按字节打印原始数据
+//		}
+//		printf("\n");
+		//-----------------------------------------------------------
 		switch (location_id)
 		{
 		case 0x01:
 		{
+//		    // 打印原始数据（16进制格式）
+//			const uint8_t* raw_data_ptr = params;
+//		    printf("Raw params bytes (hex): ");
+//		    for (int i = 0; i < 10; i++) {
+//		        printf("%02X ", raw_data_ptr[i]); // 按字节打印原始数据
+//		    }
+//		    printf("\n");
+		    //---------------------------------------------------------------
 //			std::string str(8, 0);
 //			uint8_t num_tmp;
 //			for(int i=0; i<8; i++)
@@ -2169,10 +2185,23 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 			std::string str(10, 0);
 			PARSE_DATA_COPY(params, &str[0], str.size());
 			this->date_str = std::string(str.c_str());
+
+//			// 打印date_str的值
+//			std::cout << "Date String: " << this->date_str << std::endl;
+//			// 或使用C风格打印
+//			printf("Date String: %s\n", this->date_str.c_str());
 		}
 		break;
 		case 0x02:
 		{
+		    // 打印原始数据（16进制格式）
+//			const uint8_t* raw_data_ptr = params;
+//		    printf("Raw params bytes (hex): ");
+//		    for (int i = 0; i < 10; i++) {
+//		        printf("%02X ", raw_data_ptr[i]); // 按字节打印原始数据
+//		    }
+//		    printf("\n");
+		    //---------------------------------------------------------------
 //			std::string str(6, 0);
 //			uint8_t num_tmp;
 //			for(int i=0; i<6; i++)
@@ -2180,10 +2209,15 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 //				PARSE_DATA_LE(params, &num_tmp);
 //				str[i] = format("%d", num_tmp)[0];
 //			}
-//			this->time_str = std::string(str.c_str());
+//			this->time_str = std::string(str.c_str());s
 			std::string str(8, 0);
 			PARSE_DATA_COPY(params, &str[0], str.size());
 			this->time_str = std::string(str.c_str());
+//			// 打印date_str的值
+//			std::cout << "time_str String: " << this->time_str << std::endl;
+//			// 或使用C风格打印
+//			printf("time_str String: %s\n", this->time_str.c_str());
+
 		}
 		break;
 		case 0x03:
@@ -2194,7 +2228,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
             std::string str(8, 0);
             PARSE_DATA_COPY(params, &str[0], str.size());
             this->pos_eng_3 = std::string(str.c_str());
-            std::cout << "pos_eng_3 str: " << str << std::endl;
+//            std::cout << "pos_eng_3 str: " << str << std::endl;
 		}
 		break;
 		case 0x04:
@@ -2220,7 +2254,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
             str.resize(8, 0);  // 闂佹彃绉甸弻濠勬媼閸撗呮瀭濠㈠爢鍐瘓濞戞搫鎷� 8 妤犵偠娉涢敐鐐哄礂閿燂拷 0
             PARSE_DATA_COPY(params, &str[0], str.size());
             this->pos_eng_5 = std::string(str.c_str());
-            std::cout << "pos_eng_5 str: " << str << std::endl;
+//            std::cout << "pos_eng_5 str: " << str << std::endl;
 		}
 		break;
 		case 0x06:
@@ -2231,7 +2265,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
             std::string str(8, 0);
             PARSE_DATA_COPY(params, &str[0], str.size());
             this->pos_eng_6 = std::string(str.c_str());
-            std::cout << "pos_eng_6 str: " << str << std::endl;
+//            std::cout << "pos_eng_6 str: " << str << std::endl;
 		}
 		break;
 		case 0x07:
@@ -2292,22 +2326,26 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
         break;
 		case 0x09:
 		{
-//			float longitude;
-//			PARSE_DATA_LE(params, &longitude);
-//			this->aircraft_longitude_str = format("%.7lf", longitude);
-//			this->aircraft_longitude_str = pad_str(this->aircraft_longitude_str, 12, -1);
 			std::string str(param_count-1, 0);
 			PARSE_DATA_COPY(params, &str[0], str.size());
-            try
-            {
-                aircraft_longitude = std::stof(str) / 8.3819032e-8;
-            }
-            catch (invalid_argument& e)
-            {
-                printf("aircraft_longitude stof invalid_argument.\n");
-            }
+
             // aircraft_longitude = std::stof(str) / 8.3819032e-8;
 			aircraft_longitude_str = pad_str(std::string(str.c_str()), 12, -1);
+//			std::cout << "Aircraft Longitude String: '" << aircraft_longitude_str << "'" << std::endl;
+			size_t colon_pos = str.find(':');
+			std::string number_str;
+			if (colon_pos != std::string::npos && colon_pos + 1 < str.size()) {
+			    number_str = str.substr(colon_pos + 1);
+			} else {
+			    number_str = str;  // 容错处理
+			}
+			// 3. 转换浮点数
+			try {
+			    aircraft_longitude = std::stof(number_str) / 8.3819032e-8;
+			} catch (const std::invalid_argument& e) {
+			    printf("转换失败: 非数字内容 -> %s\n", str.c_str());
+			    aircraft_longitude = 0.0;  // 默认值
+			}
 		}
 		break;
 		case 0x0a:
@@ -2318,14 +2356,22 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 //			this->aircraft_latitude_str = pad_str(this->aircraft_latitude_str, 12, -1);
 			std::string str(param_count-1, 0);
 			PARSE_DATA_COPY(params, &str[0], str.size());
-            try
-            {
-                aircraft_latitude = std::stof(str) / 8.3819032e-8;
-            }
-            catch (invalid_argument& e)
-            {
-                printf("aircraft_latitude stof invalid_argument.\n");
-            }
+			// 新增字符串分割逻辑
+			    size_t colon_pos = str.find(':');
+			    std::string number_str;
+			    if (colon_pos != std::string::npos && colon_pos + 1 < str.size()) {
+			        number_str = str.substr(colon_pos + 1);
+			    } else {
+			        number_str = str;  // 容错处理
+			    }
+
+			    // 转换逻辑
+			    try {
+			        aircraft_latitude = std::stof(number_str) / 8.3819032e-8;
+			    } catch (const std::invalid_argument& e) {
+			        printf("转换失败: 非数字内容 -> %s\n", str.c_str());
+			        aircraft_latitude = 0.0;  // 默认值
+			    }
             // aircraft_latitude = std::stof(str) / 8.3819032e-8;
 			aircraft_latitude_str = pad_str(std::string(str.c_str()), 12, -1);
 		}
@@ -2338,16 +2384,25 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 //			this->aircraft_altitude_str = pad_str(this->aircraft_altitude_str, 6, -1);
 			std::string str(param_count-1, 0);
 			PARSE_DATA_COPY(params, &str[0], str.size());
-            try
-            {
-                aircraft_altitude = (std::stoi(str) + 500) * 50;
-            }
-            catch (invalid_argument& e)
-            {
-                printf("aircraft_altitude stoi invalid_argument.\n");
-            }
+			// 新增字符串分割逻辑
+			    size_t colon_pos = str.find(':');
+			    std::string number_str;
+			    if (colon_pos != std::string::npos && colon_pos + 1 < str.size()) {
+			        number_str = str.substr(colon_pos + 1);
+			    } else {
+			        number_str = str;  // 容错处理
+			    }
+
+			    // 转换逻辑
+			    try {
+			        aircraft_altitude = (std::stoi(number_str) + 500) * 50;
+			    } catch (const std::invalid_argument& e) {
+			        printf("转换失败: 非数字内容 -> %s\n", str.c_str());
+			        aircraft_altitude = 0;  // 默认值
+			    }
             // aircraft_altitude = (std::stoi(str) + 500) * 50;
 			aircraft_altitude_str = pad_str(std::string(str.c_str()), 10, -1);
+
 		}
 		break;
         case 0x0c:
@@ -2355,69 +2410,93 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
             // std::string str(param_count-1, 0);
             // PARSE_DATA_COPY(params, &str[0], str.size());
             // position_31_str = pad_str(std::string(str.c_str()), 20, -1);
+		    // 打印原始数据（16进制格式）
+			const uint8_t* raw_data_ptr = params;
+		    printf("Raw params bytes (hex): ");
+		    for (int i = 0; i < 10; i++) {
+		        printf("%02X ", raw_data_ptr[i]); // 按字节打印原始数据
+		    }
+		    printf("\n");
+		    //---------------------------------------------------------------
             uint8_t photo_status;
 			PARSE_DATA_LE(params, &photo_status);
-			this->photo_status = photo_status; 
+			this->photo_status = photo_status;
         }
         break;
 		case 0x0d:
 		{
-//			float longitude;
-//			PARSE_DATA_LE(params, &longitude);
-//			this->object_longitude_str = format("%.7lf", longitude);
-//			this->object_longitude_str = pad_str(this->object_longitude_str, 12, -1);
 			std::string str(param_count-1, 0);
 			PARSE_DATA_COPY(params, &str[0], str.size());
-            try
-            {
-                object_longitude = std::stof(str) / 8.3819032e-8;
-            }
-            catch (invalid_argument& e)
-            {
-                printf("object_longitude stof invalid_argument.\n");
-            }
+			// 新增字符串分割逻辑
+			    size_t colon_pos = str.find(':');
+			    std::string number_str;
+			    if (colon_pos != std::string::npos && colon_pos + 1 < str.size()) {
+			        number_str = str.substr(colon_pos + 1);
+			    } else {
+			        number_str = str;  // 容错处理
+			    }
+
+			    // 转换逻辑
+			    try {
+			        object_longitude = std::stof(number_str) / 8.3819032e-8;
+			    } catch (const std::invalid_argument& e) {
+			        printf("转换失败: 非数字内容 -> %s\n", str.c_str());
+			        object_longitude = 0.0;  // 默认值
+			    }
             // object_longitude = std::stof(str) / 8.3819032e-8;
 			object_longitude_str = pad_str(std::string(str.c_str()), 12, -1);
+
 		}
 		break;
 		case 0x0e:
 		{
-//			float latitude;
-//			PARSE_DATA_LE(params, &latitude);
-//			this->object_latitude_str = format("%.7lf", latitude);
-//			this->object_latitude_str = pad_str(this->object_latitude_str, 12, -1);
 			std::string str(param_count-1, 0);
 			PARSE_DATA_COPY(params, &str[0], str.size());
-            try
-            {
-                object_latitude = std::stof(str) / 8.3819032e-8;
-            }
-            catch (invalid_argument& e)
-            {
-                printf("object_latitude stof invalid_argument.\n");
-            }
+			// 新增字符串分割逻辑
+			    size_t colon_pos = str.find(':');
+			    std::string number_str;
+			    if (colon_pos != std::string::npos && colon_pos + 1 < str.size()) {
+			        number_str = str.substr(colon_pos + 1);
+			    } else {
+			        number_str = str;  // 容错处理
+			    }
+
+			    // 转换逻辑
+			    try {
+			        object_latitude = std::stof(number_str) / 8.3819032e-8;
+			    } catch (const std::invalid_argument& e) {
+			        printf("转换失败: 非数字内容 -> %s\n", str.c_str());
+			        object_latitude = 0.0;  // 默认值
+			    }
             // object_latitude = std::stof(str) / 8.3819032e-8;
 			object_latitude_str = pad_str(std::string(str.c_str()), 12, -1);
+
+
 		}
 		break;
 		case 0x0f:
 		{
-//			uint16_t altitude;
-//			PARSE_DATA_LE(params, &altitude);
-//			this->object_altitude_str = format("%dm", altitude);
-//			this->object_altitude_str = pad_str(this->object_altitude_str, 6, -1);
 			std::string str(param_count-1, 0);
 			PARSE_DATA_COPY(params, &str[0], str.size());
-            try
-            {
-                object_altitude = (std::stoi(str) + 500) * 50;
-            }
-            catch (invalid_argument& e)
-            {
-                printf("object_altitude stoi invalid_argument.\n");
-            }            
+			 // 新增字符串分割逻辑
+			    size_t colon_pos = str.find(':');
+			    std::string number_str;
+			    if (colon_pos != std::string::npos && colon_pos + 1 < str.size()) {
+			        number_str = str.substr(colon_pos + 1);
+			    } else {
+			        number_str = str;  // 容错处理
+			    }
+
+			    // 转换逻辑
+			    try {
+			        object_altitude = (std::stoi(number_str) + 500) * 50;
+			    } catch (const std::invalid_argument& e) {
+			        printf("转换失败: 非数字内容 -> %s\n", str.c_str());
+			        object_altitude = 0;  // 默认值
+			    }
             // object_altitude = (std::stoi(str) + 500) * 50;
 			object_altitude_str = pad_str(std::string(str.c_str()), 10, -1);
+
 		}
 		break;
 		default:
