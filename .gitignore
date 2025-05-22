@@ -1,0 +1,62 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+.idea/
+/cmake-build-debug/
+*.npz
+*.mp4
+*.pth
+*.mnn
+*.jpg
+*.bmp
+*.db
+*.rknn
+*.onnx
+*.ttf
+*.zip
+
+/test/lightTrack/video/
+/test/lightTrack/image/
+/3rdparty/mpp/build/
+/3rdparty/mpp/install/
+/build/
+/cmake-build-debug/
+/.idea/
+/.vscode/
+/resource/
+
+# 其他常见忽略项
+.DS_Store         # macOS 临时文件
+*.iml             # IntelliJ IDEA 模块文件
+.vscode/          # VS Code 配置目录
+*.swp             # Vim 临时文件
