@@ -53,6 +53,19 @@
 #define GAMMA_LUT_ADDR_TV							0x43c80000
 #define GAMMA_LUT_ADDR_IR							0x43c90000
 
+// 20250526
+#define IR_COLORMAP
+
+#ifdef IR_COLORMAP
+#define IR_COLORMAP_ADDR							0x43c60000
+
+#define IR_COLOMAP_AUTO								0x00
+#define IR_COLOMAP_EN								0x10
+#define IR_COLOMAP_VER								0x18
+#define IR_COLOMAP_HOR								0x20
+
+#endif
+
 
 #define GAMMA_LUT_ADDR_PIP							0x43CA0000
 

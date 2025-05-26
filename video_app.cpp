@@ -15,6 +15,11 @@ unsigned int* VDMA_IR_HANDLE 				= (unsigned int*)mmap(NULL, 4096, PROT_READ | P
 unsigned int* VDMA_PIP_HANDLE 				= (unsigned int*)mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, open("/dev/mem", O_RDWR | O_SYNC), (off_t)(VDMA_REG_ADDR_PIP+0x0));
 unsigned int* VDMA_SDI_MIPI_HANDLE			= (unsigned int*)mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, open("/dev/mem", O_RDWR | O_SYNC), (off_t)(VDMA_REG_ADDR_SDI_MIPI+0x0));
 
+#ifdef IR_COLORMAP
+	unsigned int* IR_COLORMAP_HANDLE		= (unsigned int*)mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, open("/dev/mem", O_RDWR | O_SYNC), (off_t)(IR_COLORMAP_ADDR+0x0));;
+
+#endif
+
 #ifdef ADDING_SDI_INFO_USING_BRAM									//4kb=4*1024
 	unsigned int* SDI_INFO_BRAM_HANDLE = (unsigned int*)mmap(NULL, 4*1024, PROT_READ | PROT_WRITE, MAP_SHARED, open("/dev/mem", O_RDWR | O_SYNC), (off_t)SDI_INFO_BRAM_ADDR);
 #endif
@@ -771,6 +776,15 @@ void video_init()
 	DENOISE_MIPI_HANDLE[0x20>>2] = 1080;//height
 	DENOISE_MIPI_HANDLE[0x28>>2] = 200;//sigma
 	DENOISE_MIPI_HANDLE[0x00>>2] = 0x81;//autorun
+#endif
+
+
+#ifdef IR_COLORMAP
+	IR_COLORMAP_HANDLE[IR_COLOMAP_AUTO>>2] 	= 0x81;asm("nop");//auto mode
+	IR_COLORMAP_HANDLE[IR_COLOMAP_EN>>2] 	= 0x01;asm("nop");//enable
+	IR_COLORMAP_HANDLE[IR_COLOMAP_VER>>2] 	= 1024;asm("nop");//enable
+	IR_COLORMAP_HANDLE[IR_COLOMAP_HOR>>2] 	= 1280;asm("nop");//enable
+	printf("IR COLORMAP INIT!");
 #endif
 
 #ifdef median_denoise
