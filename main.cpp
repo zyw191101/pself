@@ -2709,10 +2709,8 @@ int main(int argc, char *argv[]) {
                             // if(tv_wave_gate_size != 2)
                             //     XJ3UARTDevice::instance()->write_command_control(0xF1, 0xF1, 0xFF, 0xFF, 0xFF, 0xFFFF, 0xFFFF, 0x06);
                             // else
-//                            XJ3UARTDevice::instance()->write_command_control(0xF1, 0xF1, 0xFF, 0xFF, 0xFF, 0xFFFF, 0xFFFF, 0xFF);
-//                            HostUARTDevice::instance()->recv_multi_prompt_tracked = false;
+                                XJ3UARTDevice::instance()->write_command_control(0xF1, 0xF1, 0xFF, 0xFF, 0xFF, 0xFFFF, 0xFFFF, 0xFF);
                             HostUARTDevice::instance()->recv_multi_prompt_tracked = false;
-                            XJ3UARTDevice::instance()->write_command_control(0xF1, 0xF1, 0xFF, 0xFF, 0xFF, 0xFFFF, 0xFFFF, 0xFF);
                         }
                         else
                         {
