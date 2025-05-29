@@ -461,15 +461,15 @@ void HostUARTDevice::read(const uint8_t *data, int len)
     //DO_EVERY_N_MS(read_print_every, log_info, "[%ds/p] %s read (index=%d,len=%d): %s ...", read_print_every / 1000, name.c_str(), visit_time, len, encode_bytes(std::string(reinterpret_cast<const char *>(data), std::min<int>(64, len))).c_str());
     //zyw 闂傚倷娴囧▔鏇㈠窗閹版澘鍑犲┑鐘宠壘缁狀垶鏌ｉ幋锝呅撻柡鍛倐閺岋繝宕掑Ο鐚存嫹閺嶎偓鎷峰鐐 闂傚倷娴囧▔鏇㈠窗閹版澘鍑犲┑鐘宠壘缁狀垳锟界懓瀚妯肩矈椤忓牊鈷戦悹鎭掑妼閺嬫垿鏌＄�ｎ亶鐓兼鐐茬箻閺屻劎锟斤絺鏅濈粈锟�
 //	std::cout << "Value of data[3]: " << std::hex << (int)data[3] << std::endl;
-    if (data[3] == 0x23 || data[3] == 0x25) {
-
-    } else {
+//    if (data[3] == 0x23 || data[3] == 0x25) {
+//
+//    } else {
 //        std::cout << "HostUARTDevice read : ";
 //        for (int i = 0; i < len; i++) {
 //            std::cout << std::hex << (int) data[i] << " ";
 //        }
 //        std::cout << std::endl;
-    }
+//    }
     const uint8_t *data_end = data + len;
     while (data < data_end)
     {
@@ -517,22 +517,22 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
     // write_data.clear()
     // write_data_length = 0;
     new_comm_recv = true;
-    if(command_id==0x23)
-    {
-
-    }else
-    {
+//    if(command_id==0x23)
+//    {
+//
+//    }else
+//    {
 //    printf("command_id %x\n",command_id);
-    if(command_id==0x16)
-    {
-    	        printf("params: ");
-    	        for (uint32_t i = 0; i < param_count; ++i)
-    	        {
-    	            printf("%02X ", params[i]);  // 濞寸姰鍎卞畷鍕礂椤擄紕绠婚柛鎺曟硾閼告澘顕ｈ箛鏂库叺闁告澧楅惁鈩冪▔椤忓嫮鎽熼柤鐚存嫹
-    	        }
-    	        printf("\n");
-
-    }
+//    if(command_id==0x16)
+//    {
+//    	        printf("params: ");
+//    	        for (uint32_t i = 0; i < param_count; ++i)
+//    	        {
+//    	            printf("%02X ", params[i]);  // 濞寸姰鍎卞畷鍕礂椤擄紕绠婚柛鎺曟硾閼告澘顕ｈ箛鏂库叺闁告澧楅惁鈩冪▔椤忓嫮鎽熼柤鐚存嫹
+//    	        }
+//    	        printf("\n");
+//
+//    }
 //         闁瑰灚鎸稿畵锟� params 闁汇劌瀚敓鏂ゆ嫹
 //        printf("params: ");
 //        for (uint32_t i = 0; i < param_count; ++i)
@@ -540,7 +540,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 //            printf("%02X ", params[i]);  // 濞寸姰鍎卞畷鍕礂椤擄紕绠婚柛鎺曟硾閼告澘顕ｈ箛鏂库叺闁告澧楅惁鈩冪▔椤忓嫮鎽熼柤鐚存嫹
 //        }
 //        printf("\n");
-    }
+//    }
     switch (command_id)
     {
     case 0x00:
@@ -563,7 +563,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
         shine_code_str = " ";
         shine_time_str = " ";
 
-        this->view_scale = 2;
+//        this->view_scale = 2;
 
         //DO_EVERY_N_MS(read_command_print_every, log_info, "[%ds/p] %s read command (index=%d): self_checking (flag=0x%02X)", read_command_print_every / 1000, name.c_str(), visit_time, flag);
         {
@@ -1049,7 +1049,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
                 uint8_t params[5] = {(uint8_t) ((version_a << 2) | (version_b >> 4)), ((version_b << 4) | (version_c >> 2)), ( (version_c << 6) | version_d), (uint8_t) ((version_year << 1) | (version_month >> 3)), (uint8_t) ((version_month << 5) | version_day)};
                 //write_command(0x15, SIZEOF(params), params);
                 write_command_new(0x15, SIZEOF(params), params, write_data, &write_data_length);
-                printf("read_product_flag:%d.\n", read_product_flag);
+//                printf("read_product_flag:%d.\n", read_product_flag);
                 //DO_EVERY_N_MS(write_command_print_every, log_info, "[%ds/p] %s write command (index=%d): read_product_flag_response", write_command_print_every / 1000, name.c_str(), visit_time);
             }
         }
@@ -1574,7 +1574,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
         uint8_t work_mode;
         PARSE_DATA_LE(params, &work_mode);
         this->work_mode = work_mode;
-        std::cout << "device work_mode: " << work_mode  << std::endl;
+//        std::cout << "device work_mode: " << work_mode  << std::endl;
 
         if(work_mode != 0x01)
         {
@@ -1801,7 +1801,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 //		this->laser_forbid = true;
 		PARSE_DATA_LE(params, &ldr_status);
 		bool skip_retiming = false;
-		printf("ldr_status %x\n",ldr_status);
+//		printf("ldr_status %x\n",ldr_status);
 		switch(ldr_status)
 		{
 			case 0x01:
@@ -1871,7 +1871,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 		// DO_EVERY_N_MS(read_command_print_every, log_info, "[%ds/p] %s read command (index=%d): ldr_status (ldr_status=0x%02X)", read_command_print_every / 1000, name.c_str(), visit_time, ldr_status);
         if(ldr_power_on)
         {
-            printf("ldr_mode %x\n",ldr_mode);
+//            printf("ldr_mode %x\n",ldr_mode);
             switch(ldr_mode)
             {
                 case 1:
@@ -2240,7 +2240,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
             std::string str(8, 0);
             PARSE_DATA_COPY(params, &str[0], str.size());
             this->pos_eng_4 = std::string(str.c_str());
-            std::cout << "pos_eng_4 str: " << str << std::endl;
+//            std::cout << "pos_eng_4 str: " << str << std::endl;
 		}
 		break;
 		case 0x05:
@@ -2343,7 +2343,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 			try {
 			    aircraft_longitude = std::stof(number_str) / 8.3819032e-8;
 			} catch (const std::invalid_argument& e) {
-			    printf("转换失败: 非数字内容 -> %s\n", str.c_str());
+//			    printf("转换失败: 非数字内容 -> %s\n", str.c_str());
 			    aircraft_longitude = 0.0;  // 默认值
 			}
 		}
@@ -2369,7 +2369,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 			    try {
 			        aircraft_latitude = std::stof(number_str) / 8.3819032e-8;
 			    } catch (const std::invalid_argument& e) {
-			        printf("转换失败: 非数字内容 -> %s\n", str.c_str());
+//			        printf("转换失败: 非数字内容 -> %s\n", str.c_str());
 			        aircraft_latitude = 0.0;  // 默认值
 			    }
             // aircraft_latitude = std::stof(str) / 8.3819032e-8;
@@ -2397,7 +2397,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 			    try {
 			        aircraft_altitude = (std::stoi(number_str) + 500) * 50;
 			    } catch (const std::invalid_argument& e) {
-			        printf("转换失败: 非数字内容 -> %s\n", str.c_str());
+//			        printf("转换失败: 非数字内容 -> %s\n", str.c_str());
 			        aircraft_altitude = 0;  // 默认值
 			    }
             // aircraft_altitude = (std::stoi(str) + 500) * 50;
@@ -2411,12 +2411,12 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
             // PARSE_DATA_COPY(params, &str[0], str.size());
             // position_31_str = pad_str(std::string(str.c_str()), 20, -1);
 		    // 打印原始数据（16进制格式）
-			const uint8_t* raw_data_ptr = params;
-		    printf("Raw params bytes (hex): ");
-		    for (int i = 0; i < 10; i++) {
-		        printf("%02X ", raw_data_ptr[i]); // 按字节打印原始数据
-		    }
-		    printf("\n");
+//			const uint8_t* raw_data_ptr = params;
+//		    printf("Raw params bytes (hex): ");
+//		    for (int i = 0; i < 10; i++) {
+//		        printf("%02X ", raw_data_ptr[i]); // 按字节打印原始数据
+//		    }
+//		    printf("\n");
 		    //---------------------------------------------------------------
             uint8_t photo_status;
 			PARSE_DATA_LE(params, &photo_status);
@@ -2440,7 +2440,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 			    try {
 			        object_longitude = std::stof(number_str) / 8.3819032e-8;
 			    } catch (const std::invalid_argument& e) {
-			        printf("转换失败: 非数字内容 -> %s\n", str.c_str());
+//			        printf("转换失败: 非数字内容 -> %s\n", str.c_str());
 			        object_longitude = 0.0;  // 默认值
 			    }
             // object_longitude = std::stof(str) / 8.3819032e-8;
@@ -2465,7 +2465,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 			    try {
 			        object_latitude = std::stof(number_str) / 8.3819032e-8;
 			    } catch (const std::invalid_argument& e) {
-			        printf("转换失败: 非数字内容 -> %s\n", str.c_str());
+//			        printf("转换失败: 非数字内容 -> %s\n", str.c_str());
 			        object_latitude = 0.0;  // 默认值
 			    }
             // object_latitude = std::stof(str) / 8.3819032e-8;
@@ -2491,7 +2491,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 			    try {
 			        object_altitude = (std::stoi(number_str) + 500) * 50;
 			    } catch (const std::invalid_argument& e) {
-			        printf("转换失败: 非数字内容 -> %s\n", str.c_str());
+//			        printf("转换失败: 非数字内容 -> %s\n", str.c_str());
 			        object_altitude = 0;  // 默认值
 			    }
             // object_altitude = (std::stoi(str) + 500) * 50;
@@ -2670,8 +2670,8 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 
         this->laser_ranging_distance_str = format("%um", distance);
 		this->laser_ranging_distance_str = pad_str(this->laser_ranging_distance_str, 7, -1);
-        printf("show_str_attitude_angle_rng: %s\n", show_str_attitude_angle_rng.c_str());
-        printf("laser_ranging_distance_str:%s\n", laser_ranging_distance_str.c_str());
+//        printf("show_str_attitude_angle_rng: %s\n", show_str_attitude_angle_rng.c_str());
+//        printf("laser_ranging_distance_str:%s\n", laser_ranging_distance_str.c_str());
         //DO_EVERY_N_MS(read_command_print_every, log_info, "[%ds/p] %s read command (index=%d): update_distance (RNG=%d)", read_command_print_every / 1000, name.c_str(), visit_time, (int) distance);
     }
         break;
@@ -3128,7 +3128,7 @@ void XJ3UARTDevice::read_command(uint8_t command_id, uint32_t param_count, const
             mipi_reset = true;
             break;
         default:
-            printf("error self_check info!");
+//            printf("error self_check info!");
             break;
     } 
 

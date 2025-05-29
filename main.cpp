@@ -481,11 +481,11 @@ unsigned char uart_host_byte_arr_1[1024] = {0};
 static int loop_nop_num = 2;
 int HOST_uart_write_callback(const vector<uint8_t> &data, int len)
 {
-    std::cout << "HOST_uart_write_callback HostUARTDevice write: ";
-    for (int i = 0; i < len; i++) {
-        std::cout << std::hex << (int) data[i] << " ";
-    }
-    std::cout << std::endl;
+//    std::cout << "HOST_uart_write_callback HostUARTDevice write: ";
+//    for (int i = 0; i < len; i++) {
+//        std::cout << std::hex << (int) data[i] << " ";
+//    }
+//    std::cout << std::endl;
     int write_len = 0;
     for (int i = 0; i < len; ++i)
     {
@@ -2575,8 +2575,9 @@ int main(int argc, char *argv[]) {
                                HostUARTDevice::instance()->second_capture_changed || HostUARTDevice::instance()->track_ID_send);
 
         if(wave_gate_visible != HostUARTDevice::instance()->wave_gate_visible)
+        {
             wave_gate_visible = HostUARTDevice::instance()->wave_gate_visible;
-
+        }
         if(HostUARTDevice::instance()->start_new_track)
         {
             XJ3UARTDevice::instance()->write_command_control(0xF2, 0xFF, 0xFF, 0xFF, 0xFF, 0xFFFF, 0xFFFF, 0xFF);
@@ -2587,6 +2588,11 @@ int main(int argc, char *argv[]) {
         }
         if(HostUARTDevice::instance()->wave_gate_size_changed)
         {
+//        	 if(track_command == 1)
+//			{
+//				timer2 = 30;
+//			}
+		//	HostUARTDevice::instance()->wave_gate_size_changed = false;
             if(is_tv)
             {
                 if( (HostUARTDevice::instance()->wave_gate_width_scale <= 0.500) && (tv_wave_gate_size != 0) )
@@ -2647,6 +2653,7 @@ int main(int argc, char *argv[]) {
         {
             XJ3UARTDevice::instance()->write_command_control(0xFF, 0xFF, (HostUARTDevice::instance()->wave_gate_position_y << 4) | HostUARTDevice::instance()->wave_gate_position_x, 0xFF, 0xFF, 0xFFFF, 0xFFFF, 0xFF);
             HostUARTDevice::instance()->wave_gate_position_changed = false;
+           // XJ3UARTDevice::instance()->write_command_control(0xFF, 0xFF, (HostUARTDevice::instance()->wave_gate_position_y << 4) | HostUARTDevice::instance()->wave_gate_position_x, 0xFF, 0xFF, 0xFFFF, 0xFFFF, 0xFF);
         }
 
         static std::vector<TarGraphInfo *> targets_{&TarInfo_1, &TarInfo_2, &TarInfo_3, &TarInfo_4, &TarInfo_5, &TarInfo_6, &TarInfo_7, &TarInfo_8};
@@ -2675,8 +2682,9 @@ int main(int argc, char *argv[]) {
                 XJ3UARTDevice::instance()->data_changed = false;
             }
             if(status_changed)
+            {
                 status_changed = false;
-
+            }
             if(HostUARTDevice::instance()->track_command_changed)
             {
                 track_command = HostUARTDevice::instance()->track_command;
@@ -2701,8 +2709,10 @@ int main(int argc, char *argv[]) {
                             // if(tv_wave_gate_size != 2)
                             //     XJ3UARTDevice::instance()->write_command_control(0xF1, 0xF1, 0xFF, 0xFF, 0xFF, 0xFFFF, 0xFFFF, 0x06);
                             // else
-                            XJ3UARTDevice::instance()->write_command_control(0xF1, 0xF1, 0xFF, 0xFF, 0xFF, 0xFFFF, 0xFFFF, 0xFF);
+//                            XJ3UARTDevice::instance()->write_command_control(0xF1, 0xF1, 0xFF, 0xFF, 0xFF, 0xFFFF, 0xFFFF, 0xFF);
+//                            HostUARTDevice::instance()->recv_multi_prompt_tracked = false;
                             HostUARTDevice::instance()->recv_multi_prompt_tracked = false;
+                            XJ3UARTDevice::instance()->write_command_control(0xF1, 0xF1, 0xFF, 0xFF, 0xFF, 0xFFFF, 0xFFFF, 0xFF);
                         }
                         else
                         {
@@ -4583,10 +4593,10 @@ int main(int argc, char *argv[]) {
 //            printf("disp_out_cnt %d",disp_out_cnt);
             if (work_mode != HostUARTDevice::instance()->work_mode)
             {
-            	std::cout << "work_mode: " << work_mode
-            	          << ", HostUARTDevice::instance()->work_mode: "
-            	          << HostUARTDevice::instance()->work_mode
-            	          << std::endl;
+//            	std::cout << "work_mode: " << work_mode
+//            	          << ", HostUARTDevice::instance()->work_mode: "
+//            	          << HostUARTDevice::instance()->work_mode
+//            	          << std::endl;
             	if(hide__osd_pos_init_sys)
             	{
             	init_display_hide++;
@@ -4594,7 +4604,7 @@ int main(int argc, char *argv[]) {
                 if(work_mode == 0x01 && HostUARTDevice::instance()->work_mode != 0x01||init_display_hide>=300)
                 {
 // #ifdef update_sys_init_debug
-                	std::cout<<"init_display_hide"<<init_display_hide<<std::endl;
+//                	std::cout<<"init_display_hide"<<init_display_hide<<std::endl;
                 	hide__osd_pos_init_sys=false;
                     init_count = 0;
                     for(int i = 0; i < 6; i++)
@@ -5213,7 +5223,7 @@ int main(int argc, char *argv[]) {
 //            }
                 //zyw update menu start ----------------------------------------------------------------
                 if ( HostUARTDevice::instance()->is_case_0x1d_triggered==1) {
-                    std::cout << "menu update zyw" <<std::endl;
+//                    std::cout << "menu update zyw" <<std::endl;
                     // 閼惧嘲褰囬懣婊冨礋閺佺増宓�
                     std::vector<std::string> show_str_menus = HostUARTDevice::instance()->show_str_menus;
                     // 婵夘偄鍘� osd_top_char
@@ -5246,13 +5256,13 @@ int main(int argc, char *argv[]) {
                     //zyw update arrow_menu start-------------------------------
                     if(arrow_menu)
                     {
-                        std::cout << "menu update zyw 1111" <<std::endl;
+//                        std::cout << "menu update zyw 1111" <<std::endl;
                         draw_left_arrow(1,120+3,680+16*6*2+16*2,true,targraphColor.ColorConfig.color.Color_R_Y,
                                         targraphColor.ColorConfig.color.Color_G_U,
                                         targraphColor.ColorConfig.color.Color_B_V);
                     }else
                     {
-                        std::cout << "menu update zyw 222" <<std::endl;
+//                        std::cout << "menu update zyw 222" <<std::endl;
                         draw_left_arrow(1,120+3,680+16*6*2+16*2,false,targraphColor.ColorConfig.color.Color_R_Y,
                                         targraphColor.ColorConfig.color.Color_G_U,
                                         targraphColor.ColorConfig.color.Color_B_V);
@@ -6912,7 +6922,7 @@ int main(int argc, char *argv[]) {
 //                                osd_rng[i+3] = (HostUARTDevice::instance()->laser_work_time_str)[i];
 //                            }
                                 int size = sizeof(HostUARTDevice::instance()->laser_ranging_distance_str) / sizeof(HostUARTDevice::instance()->laser_ranging_distance_str[0]);
-                                std::cout << "laser_ranging_distance_str size "<<std::endl;
+//                                std::cout << "laser_ranging_distance_str size "<<std::endl;
                                 for (int i = 0; i < size-1; ++i) {
                                     osd_rng[i+4] = (HostUARTDevice::instance()->laser_ranging_distance_str)[i];
                                 }
