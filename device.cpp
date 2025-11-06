@@ -1124,6 +1124,8 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
         PARSE_DATA_LE(params, &cross_symbol_x);
         int16_t cross_symbol_y;
         PARSE_DATA_LE(params, &cross_symbol_y);
+        printf("[case 0x13] Initial values: cross_symbol_x=%d, cross_symbol_y=%d\n", cross_symbol_x, cross_symbol_y);
+        printf("[case 0x13] channel=%d\n", this->channel);
         if(this->channel!=1)
         {
             cross_symbol_x = (cross_symbol_x < 360) ? 360 : ((cross_symbol_x > 1560) ?  1560 : cross_symbol_x);
@@ -1147,6 +1149,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
         }
         this->cross_symbol_x = cross_symbol_x;
         this->cross_symbol_y = cross_symbol_y;
+        printf("[case 0x13] Final values: this->cross_symbol_x=%d, this->cross_symbol_y=%d\n", cross_symbol_x, cross_symbol_y);
         cross_symbol_send = true;
         //DO_EVERY_N_MS(read_command_print_every, log_info, "[%ds/p] %s read command (index=%d): cross_symbol_position (x=%d, y=%d)", read_command_print_every / 1000, name.c_str(), visit_time, (int) cross_symbol_x, (int) cross_symbol_y);
         //XJ3UARTDevice::instance()->write_command_control(0xFF, 0xFF, 0xFF, 0xFF, 0xFF, cross_symbol_x, cross_symbol_y, 0x01); //20230106

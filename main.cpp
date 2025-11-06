@@ -1722,7 +1722,7 @@ int main(int argc, char *argv[]) {
     log_info("%s (%s %s)", app_name, __DATE__, __TIME__);
     log_info("Command line: %s", join(argc, argv, " ").c_str());
 
-    const auto software_version = "WM-AVT Version 0.1.0.0, 2025-05-19(released by zhangyuanwei";
+    const auto software_version = "WM-AVT Version 0.1.0.1, 2025-11-06(released by zhangyuanwei";
     log_info("%s", software_version);
 #ifdef OS_UNIX
     // video_init();
@@ -5753,7 +5753,7 @@ int main(int argc, char *argv[]) {
                                         targraphColor.ColorConfig.color.Color_G_U,
                                         targraphColor.ColorConfig.color.Color_B_V, false);
                 }
-                    printf("zyw update sensor\n");
+//                    printf("zyw update sensor\n");
                     update_yaw_angle_and_ver_y(true,-1);
 //                draw_view_lines(targraphColor.ColorConfig.color.Color_R_Y,
 //                                targraphColor.ColorConfig.color.Color_G_U,
@@ -6231,7 +6231,7 @@ int main(int argc, char *argv[]) {
 //                update_OSD_chinese(osd_pos_inertia_velocitycompensation_workmode, OSD_BRAM_HANDLE);
                     osd_pos_vcp.str_arr = osd_vcp;
                     update_OSD_chinese(osd_pos_vcp, OSD_BRAM_HANDLE);
-                    printf("zyw upodate model(vcp)\n");
+//                    printf("zyw upodate model(vcp)\n");
             }
 
             // command ID 0x23
