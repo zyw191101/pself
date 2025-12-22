@@ -1364,7 +1364,7 @@ void draw_view_lines(unsigned char color_y, unsigned char color_u, unsigned char
 
 // 缁樺埗椤堕儴缃戞牸绾挎潯
 void draw_top_grid_lines(unsigned char color_y, unsigned char color_u, unsigned char color_v, bool enable) {
-    printf("draw_top_grid_lines \n");
+//    printf("draw_top_grid_lines \n");
     int index_top = 0;
     int grid_x_start = 680;
     int grid_x_end = grid_x_start + 16 * 30;
