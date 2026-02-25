@@ -140,6 +140,7 @@ unsigned int* VIDEO_MIXER_HANDLE 			= (unsigned int*)mmap(NULL, 4096, PROT_READ 
 
 unsigned int* GPIO_CROSS_CTRL_HANDLE		= (unsigned int*)mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, open("/dev/mem", O_RDWR | O_SYNC), (off_t)(AXI_GPIO_CROSS_CTRL+0x0));
 unsigned int* GPIO_TAR_Graph_Color_HANDLE	= (unsigned int*)mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, open("/dev/mem", O_RDWR | O_SYNC), (off_t)(AXI_GPIO_TAR_GRAPH_COLOR_ADDR));
+unsigned int* GPIO_VDMA_FRAME_INDEX_HANDLE	= (unsigned int*)mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, open("/dev/mem", O_RDWR | O_SYNC), (off_t)(AXI_GPIO_VDMA_FRAME_INDEX_ADDR));
 
 // mmap TV img buf
 unsigned char* pChar_VDMA_IMG_BUF_TV_1		= (unsigned char*)mmap(NULL, fbLegnth_TV, PROT_READ | PROT_WRITE, MAP_SHARED, open("/dev/mem", O_RDWR | O_SYNC), (off_t)VDMA_IMG_BUF_ADDR_TV_1);
@@ -402,6 +403,10 @@ void video_init()
 	static int bg_color_V_ir = 128;
 
 	mipi_video_ctrl.is_TV = 0;
+	GPIO_VDMA_FRAME_INDEX_HANDLE[GPIO_VDMA_FRAME_IDX_PORT1_TRI_OFFSET>>2] = 0x00000000;	asm("nop");
+	GPIO_VDMA_FRAME_INDEX_HANDLE[GPIO_VDMA_FRAME_IDX_PORT2_TRI_OFFSET>>2] = 0x00000000;	asm("nop");
+	GPIO_VDMA_FRAME_INDEX_HANDLE[GPIO_VDMA_FRAME_IDX_PORT1_DATA_OFFSET>>2] = 0;			asm("nop");
+	GPIO_VDMA_FRAME_INDEX_HANDLE[GPIO_VDMA_FRAME_IDX_PORT2_DATA_OFFSET>>2] = 0;			asm("nop");
 
 	for(int r = 0;r<PARA_IMG_BUF_ACITVE_ROWS_TV_1620;r++)
 	{
@@ -834,6 +839,7 @@ void video_in_TV() 	//irq0_drv  ----VIS_CL_VS_IN			----SIGIO     ---- POLL_IN   
 	{
 		FrmWriteID_TV = (FrmWriteID_TV + 1) % 2;
 	}
+	GPIO_VDMA_FRAME_INDEX_HANDLE[GPIO_VDMA_FRAME_IDX_PORT1_DATA_OFFSET>>2] = static_cast<unsigned int>(FrmWriteID_TV & 0x1F);	asm("nop");
 
 	// FrmWriteID_TV = 0;//no pingpong
 
@@ -899,6 +905,7 @@ void video_in_IR()  	//irq2_drv  ----NIR_CL_VS_IN			----SIGIO     ---- POLL_MSG 
 	{
 		FrmWriteID_IR = (FrmWriteID_IR+1) % 7;
 	}
+	GPIO_VDMA_FRAME_INDEX_HANDLE[GPIO_VDMA_FRAME_IDX_PORT2_DATA_OFFSET>>2] = static_cast<unsigned int>(FrmWriteID_IR & 0x1F);	asm("nop");
 
 	// FrmWriteID_IR = 0;
 

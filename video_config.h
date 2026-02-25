@@ -117,6 +117,12 @@
 //*******PL image proc ctrl gpio port---start
 #define AXI_GPIO_CROSS_CTRL								0x41280000	//gpio
 #define AXI_GPIO_TAR_GRAPH_COLOR_ADDR 					0x41270000
+#define AXI_GPIO_VDMA_FRAME_INDEX_ADDR					0x412F0000	//gpio, output vdma frame index
+
+#define GPIO_VDMA_FRAME_IDX_PORT1_DATA_OFFSET			0x00		//ch1: TV
+#define GPIO_VDMA_FRAME_IDX_PORT1_TRI_OFFSET			0x04
+#define GPIO_VDMA_FRAME_IDX_PORT2_DATA_OFFSET			0x08		//ch2: IR
+#define GPIO_VDMA_FRAME_IDX_PORT2_TRI_OFFSET			0x0C
 
 #define CTRL_OFFSET_PORT1		0x00
 #define CTRL_OFFSET_PORT2		0x08

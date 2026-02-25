@@ -169,6 +169,7 @@ extern unsigned int* VIDEO_MIXER_HANDLE;
 
 extern unsigned int* GPIO_CROSS_CTRL_HANDLE;
 extern unsigned int* GPIO_TAR_Graph_Color_HANDLE;
+extern unsigned int* GPIO_VDMA_FRAME_INDEX_HANDLE;
 
 extern unsigned char* pChar_VDMA_IMG_BUF_TV_1;
 extern unsigned char* pChar_VDMA_IMG_BUF_TV_2;

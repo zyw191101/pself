@@ -1358,13 +1358,28 @@ void draw_view_lines(unsigned char color_y, unsigned char color_u, unsigned char
         }
     }
 
+    // The OSD color config still provides YUV values; convert to RGB888 for mixer buffer.
+    auto clamp_u8 = [](int v) -> unsigned char {
+        if (v < 0) return 0;
+        if (v > 255) return 255;
+        return static_cast<unsigned char>(v);
+    };
+    const int c = static_cast<int>(color_y) - 16;
+    const int d = static_cast<int>(color_u) - 128;
+    const int e = static_cast<int>(color_v) - 128;
+    const unsigned char color_r = clamp_u8((298 * c + 409 * e + 128) >> 8);
+    const unsigned char color_g = clamp_u8((298 * c - 100 * d - 208 * e + 128) >> 8);
+    const unsigned char color_b = clamp_u8((298 * c + 516 * d + 128) >> 8);
+
     unsigned char alpha = enable ? 255 : 0;
-    draw_cur_dot_view_line(ptr_MIXER_LAYER_TXT_BUF, pt_view_line, color_y, color_u, color_v, alpha);
+    // draw_cur_dot_view_line writes channel order as [0]=arg1,[1]=arg3,[2]=arg2.
+    // Current RGB888 interpretation in pipeline maps correctly when using (R, G, B) arguments here.
+    draw_cur_dot_view_line(ptr_MIXER_LAYER_TXT_BUF, pt_view_line, color_r, color_g, color_b, alpha);
 }
 
 // 缁樺埗椤堕儴缃戞牸绾挎潯
 void draw_top_grid_lines(unsigned char color_y, unsigned char color_u, unsigned char color_v, bool enable) {
-//    printf("draw_top_grid_lines \n");
+    printf("draw_top_grid_lines \n");
     int index_top = 0;
     int grid_x_start = 680;
     int grid_x_end = grid_x_start + 16 * 30;
@@ -1397,8 +1412,23 @@ void draw_top_grid_lines(unsigned char color_y, unsigned char color_u, unsigned 
         x_pos += (16 * 6);
     }
 
+    // The OSD color config still provides YUV values; convert to RGB888 for mixer buffer.
+    auto clamp_u8 = [](int v) -> unsigned char {
+        if (v < 0) return 0;
+        if (v > 255) return 255;
+        return static_cast<unsigned char>(v);
+    };
+    const int c = static_cast<int>(color_y) - 16;
+    const int d = static_cast<int>(color_u) - 128;
+    const int e = static_cast<int>(color_v) - 128;
+    const unsigned char color_r = clamp_u8((298 * c + 409 * e + 128) >> 8);
+    const unsigned char color_g = clamp_u8((298 * c - 100 * d - 208 * e + 128) >> 8);
+    const unsigned char color_b = clamp_u8((298 * c + 516 * d + 128) >> 8);
+
     unsigned char alpha = enable ? 255 : 0;
-    draw_cur_dot_top_line(ptr_MIXER_LAYER_TXT_BUF, pt_top_line, color_y, color_u, color_v, alpha);
+    // draw_cur_dot_top_line writes channel order as [0]=arg1,[1]=arg3,[2]=arg2.
+    // Current RGB888 interpretation in pipeline maps correctly when using (R, G, B) arguments here.
+    draw_cur_dot_top_line(ptr_MIXER_LAYER_TXT_BUF, pt_top_line, color_r, color_g, color_b, alpha);
 }
 //-------------------------------------------
 //缁樺埗瑙嗗満绠ご
@@ -1571,8 +1601,23 @@ void draw_left_arrow(int arrow_id, int base_row, int base_col,
     // ========================
     // 5. 鏄惧瓨鎿嶄綔涓庣姸鎬佹洿鏂�
     // ========================
+    // The input color tuple is YUV; convert to RGB888 before writing into mixer buffer.
+    auto clamp_u8 = [](int v) -> unsigned char {
+        if (v < 0) return 0;
+        if (v > 255) return 255;
+        return static_cast<unsigned char>(v);
+    };
+    const int c = static_cast<int>(color_y) - 16;
+    const int d = static_cast<int>(color_u) - 128;
+    const int e = static_cast<int>(color_v) - 128;
+    const unsigned char color_r = clamp_u8((298 * c + 409 * e + 128) >> 8);
+    const unsigned char color_g = clamp_u8((298 * c - 100 * d - 208 * e + 128) >> 8);
+    const unsigned char color_b = clamp_u8((298 * c + 516 * d + 128) >> 8);
+
     if (cnt > 0) {
-        draw_cur_dot(ptr_MIXER_LAYER_TXT_BUF, cur_pts, color_y, color_u, color_v);
+        // draw_cur_dot writes channel order as [0]=arg1,[1]=arg3,[2]=arg2.
+        // Current RGB888 interpretation in pipeline maps correctly when using (R, G, B) arguments here.
+        draw_cur_dot(ptr_MIXER_LAYER_TXT_BUF, cur_pts, color_r, color_g, color_b);
         memcpy(pre_pts, cur_pts, sizeof(unsigned short)*cnt); // 浠呮嫹璐濇湁鏁堟暟鎹�
     }
 }
@@ -1683,7 +1728,8 @@ void update_yaw_angle_and_ver_y(bool enable, int pos) {
 /*	void draw_left_arrow(int arrow_id, int base_row, int base_col,
 	                     bool visible, unsigned char color_y, unsigned char color_u, unsigned char color_v)*/
 //    printf("left arrow 5\n");
-    draw_left_arrow(0,ver_y,96+16*3+5,enable,targraphColor.ColorConfig.color.Color_R_Y,
+    const int arrow_ver_y = static_cast<int>(ver_y);
+    draw_left_arrow(0,arrow_ver_y,96+16*3+5,enable,targraphColor.ColorConfig.color.Color_R_Y,
                     targraphColor.ColorConfig.color.Color_G_U,
                     targraphColor.ColorConfig.color.Color_B_V);
 
@@ -1724,6 +1770,7 @@ int main(int argc, char *argv[]) {
 
     const auto software_version = "WM-AVT Version 0.1.0.1, 2025-11-06(released by zhangyuanwei";
     log_info("%s", software_version);
+    log_info("tsl_test_based4.0");
 #ifdef OS_UNIX
     // video_init();
     sigio_intr_init();			//init IR vs in interrupt callback
