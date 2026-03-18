@@ -29,7 +29,11 @@ std::string parse_arg(const std::string &key, std::string default_value, bool re
     }
 
     auto key_ = "--" + key + "=";
-    auto arg = std::find_if(argv, argv + argc, [&](char *arg) { return (strlen(arg) > key_.size()) && (std::equal(arg, arg + key_.size(), &key_[0])); });
+    auto arg = std::find_if(argv, argv + argc, [&](char *arg) { 
+        if (arg == nullptr) return false;
+        size_t arg_len = strnlen(arg, 4096);  // 限制最大扫描长度为4096
+        return (arg_len > key_.size()) && (std::equal(arg, arg + key_.size(), &key_[0])); 
+    });
     if (arg < (argv + argc))
     {
         return *arg + key_.size();
@@ -87,8 +91,11 @@ std::string strftime(const std::string &format, time_t time_, bool is_ms)
     if (ms_index != std::string::npos)
     {
         char buffer[4];
-        sprintf(buffer, "%03d", (int) (time_ms - (int64_t) ((int64_t) (time_ms * 1e-3) * 1e3)));
-        time_string.replace(ms_index, ms_index + 2, std::string(buffer));
+        int ms_value = (int) (time_ms - (int64_t) ((int64_t) (time_ms * 1e-3) * 1e3));
+        if (ms_value >= 0 && ms_value < 1000) {
+            snprintf(buffer, sizeof(buffer), "%03d", ms_value);
+            time_string.replace(ms_index, ms_index + 2, std::string(buffer));
+        }
     }
 
     return time_string;
@@ -160,11 +167,18 @@ bool endswith(const std::string &str, const std::string &end)
 
 std::string format(const char *format, ...)
 {
-    size_t buffer_size = strlen(format) * 10;
+    if (format == nullptr) {
+        return std::string();
+    }
+    size_t format_len = strnlen(format, 10240);  // 限制最大扫描长度为10240
+    if (format_len == 0) {
+        return std::string();
+    }
+    size_t buffer_size = format_len * 10;
     char *buffer = new char[buffer_size];
     va_list args;
     va_start(args, format);
-    vsprintf(buffer, format, args);
+    vsnprintf(buffer, buffer_size, format, args);
     va_end(args);
     std::string formatted_str(buffer);
     delete[]buffer;

@@ -146,8 +146,6 @@ public:
     int16_t cross_y_main;
     int16_t cross_x_pip;
     int16_t cross_y_pip;
-    int16_t cross_x_pip_independent;
-    int16_t cross_y_pip_independent;
     int16_t cross_x_tv;
     int16_t cross_y_tv;
     int16_t cross_x_ir;
@@ -155,8 +153,6 @@ public:
     uint8_t fusion;
     uint8_t aircraft_id;
     uint8_t compress_ratio;
-
-    uint8_t is_case_0x1d_triggered;//zyw add 20250113
 
     uint8_t show_level;
     uint8_t show_color;
@@ -203,25 +199,15 @@ public:
     int16_t flight_pitch;
     int16_t flight_roll;
 
+	uint8_t enhance_level;
 	// std::string day;
 	// std::string month;
 	// std::string year;
 	std::string date_str;
 	std::string time_str;
-    //zyw tihr 20250219 location 3-6=======================================
-    //eng
-    std::string pos_eng_3;
-    std::string pos_eng_4;
-    std::string pos_eng_5;
-    std::string pos_eng_6;
-    //-----------------------
-    //chinese
-    uint8_t enhance_level;
 	uint8_t brigheness_contrast_modify;
 	uint8_t inertial_state;
 	uint8_t image_enhancement;
-    //-------------------------------
-    //=======================================================
 	uint8_t target_style;
     uint8_t target_type;
     uint8_t multi_type;
@@ -230,11 +216,6 @@ public:
 	std::string shine_time_str;
 	std::string yaw_view_angle_str;
 	uint8_t sensor_view_size;
-
-    bool three_update=false;
-    bool ldr_first_power_on=true;
-    bool sjuo=false;
-
     bool sensor_view_changed;
 	bool ir_power;
 	bool ir_work;

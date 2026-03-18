@@ -15,11 +15,6 @@ unsigned int* VDMA_IR_HANDLE 				= (unsigned int*)mmap(NULL, 4096, PROT_READ | P
 unsigned int* VDMA_PIP_HANDLE 				= (unsigned int*)mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, open("/dev/mem", O_RDWR | O_SYNC), (off_t)(VDMA_REG_ADDR_PIP+0x0));
 unsigned int* VDMA_SDI_MIPI_HANDLE			= (unsigned int*)mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, open("/dev/mem", O_RDWR | O_SYNC), (off_t)(VDMA_REG_ADDR_SDI_MIPI+0x0));
 
-//#ifdef IR_COLORMAP
-//	unsigned int* IR_COLORMAP_HANDLE		= (unsigned int*)mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, open("/dev/mem", O_RDWR | O_SYNC), (off_t)(IR_COLORMAP_ADDR+0x0));;
-//
-//#endif
-
 #ifdef ADDING_SDI_INFO_USING_BRAM									//4kb=4*1024
 	unsigned int* SDI_INFO_BRAM_HANDLE = (unsigned int*)mmap(NULL, 4*1024, PROT_READ | PROT_WRITE, MAP_SHARED, open("/dev/mem", O_RDWR | O_SYNC), (off_t)SDI_INFO_BRAM_ADDR);
 #endif
@@ -140,7 +135,6 @@ unsigned int* VIDEO_MIXER_HANDLE 			= (unsigned int*)mmap(NULL, 4096, PROT_READ 
 
 unsigned int* GPIO_CROSS_CTRL_HANDLE		= (unsigned int*)mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, open("/dev/mem", O_RDWR | O_SYNC), (off_t)(AXI_GPIO_CROSS_CTRL+0x0));
 unsigned int* GPIO_TAR_Graph_Color_HANDLE	= (unsigned int*)mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, open("/dev/mem", O_RDWR | O_SYNC), (off_t)(AXI_GPIO_TAR_GRAPH_COLOR_ADDR));
-unsigned int* GPIO_VDMA_FRAME_INDEX_HANDLE	= (unsigned int*)mmap(NULL, 4096, PROT_READ | PROT_WRITE, MAP_SHARED, open("/dev/mem", O_RDWR | O_SYNC), (off_t)(AXI_GPIO_VDMA_FRAME_INDEX_ADDR));
 
 // mmap TV img buf
 unsigned char* pChar_VDMA_IMG_BUF_TV_1		= (unsigned char*)mmap(NULL, fbLegnth_TV, PROT_READ | PROT_WRITE, MAP_SHARED, open("/dev/mem", O_RDWR | O_SYNC), (off_t)VDMA_IMG_BUF_ADDR_TV_1);
@@ -403,10 +397,6 @@ void video_init()
 	static int bg_color_V_ir = 128;
 
 	mipi_video_ctrl.is_TV = 0;
-	GPIO_VDMA_FRAME_INDEX_HANDLE[GPIO_VDMA_FRAME_IDX_PORT1_TRI_OFFSET>>2] = 0x00000000;	asm("nop");
-	GPIO_VDMA_FRAME_INDEX_HANDLE[GPIO_VDMA_FRAME_IDX_PORT2_TRI_OFFSET>>2] = 0x00000000;	asm("nop");
-	GPIO_VDMA_FRAME_INDEX_HANDLE[GPIO_VDMA_FRAME_IDX_PORT1_DATA_OFFSET>>2] = 0;			asm("nop");
-	GPIO_VDMA_FRAME_INDEX_HANDLE[GPIO_VDMA_FRAME_IDX_PORT2_DATA_OFFSET>>2] = 0;			asm("nop");
 
 	for(int r = 0;r<PARA_IMG_BUF_ACITVE_ROWS_TV_1620;r++)
 	{
@@ -779,18 +769,9 @@ void video_init()
 	DENOISE_MIPI_HANDLE[0x10>>2] = 0x01;//enable
 	DENOISE_MIPI_HANDLE[0x18>>2] = 1920;//width
 	DENOISE_MIPI_HANDLE[0x20>>2] = 1080;//height
-	DENOISE_MIPI_HANDLE[0x28>>2] = 200;//sigma
+	DENOISE_MIPI_HANDLE[0x28>>2] = 200; //sigma
 	DENOISE_MIPI_HANDLE[0x00>>2] = 0x81;//autorun
 #endif
-
-
-//#ifdef IR_COLORMAP
-//	IR_COLORMAP_HANDLE[IR_COLOMAP_AUTO>>2] 	= 0x81;asm("nop");//auto mode
-//	IR_COLORMAP_HANDLE[IR_COLOMAP_EN>>2] 	= 0x01;asm("nop");//enable
-//	IR_COLORMAP_HANDLE[IR_COLOMAP_VER>>2] 	= 1024;asm("nop");//enable
-//	IR_COLORMAP_HANDLE[IR_COLOMAP_HOR>>2] 	= 1280;asm("nop");//enable
-//	printf("IR COLORMAP INIT!");
-//#endif
 
 #ifdef median_denoise
 	MEDIAN_MIPI_HANDLE[0x10>>2] = 0x01;asm("nop");//enable
@@ -839,7 +820,6 @@ void video_in_TV() 	//irq0_drv  ----VIS_CL_VS_IN			----SIGIO     ---- POLL_IN   
 	{
 		FrmWriteID_TV = (FrmWriteID_TV + 1) % 2;
 	}
-	GPIO_VDMA_FRAME_INDEX_HANDLE[GPIO_VDMA_FRAME_IDX_PORT1_DATA_OFFSET>>2] = static_cast<unsigned int>(FrmWriteID_TV & 0x1F);	asm("nop");
 
 	// FrmWriteID_TV = 0;//no pingpong
 
@@ -905,7 +885,6 @@ void video_in_IR()  	//irq2_drv  ----NIR_CL_VS_IN			----SIGIO     ---- POLL_MSG 
 	{
 		FrmWriteID_IR = (FrmWriteID_IR+1) % 7;
 	}
-	GPIO_VDMA_FRAME_INDEX_HANDLE[GPIO_VDMA_FRAME_IDX_PORT2_DATA_OFFSET>>2] = static_cast<unsigned int>(FrmWriteID_IR & 0x1F);	asm("nop");
 
 	// FrmWriteID_IR = 0;
 
@@ -1978,7 +1957,7 @@ void update_north_arrow(float north_angle, int color_Y, int color_U, int color_V
 //		}config;
 //	}sdi_info;
 //	sdi_info for_write;
-//	#define printf_report_multi_promote
+	//#define printf_report_multi_promote
 	#ifdef printf_report_multi_promote
 		static int cnt_printf = 0;
 	#endif

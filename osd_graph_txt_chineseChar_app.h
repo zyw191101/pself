@@ -64,38 +64,6 @@ extern OSD_INFO osd_pos_aircraft_position_altitude;
 extern OSD_INFO osd_pos_date;
 extern OSD_INFO osd_pos_time;
 extern OSD_INFO osd_pos_sensor_viewangle_enhance_viewstate_bricont_ir;
-
-//zyw add
-
-extern OSD_INFO osd_pos_fov;//FOV
-extern OSD_INFO osd_pos_ir;
-extern OSD_INFO osd_pos_tv;
-extern OSD_INFO osd_pos_ldr;
-
-extern OSD_INFO osd_pos_vcp;
-
-extern OSD_INFO osd_pos_enhance_avt;
-extern OSD_INFO osd_pos_enhance_tv;
-extern OSD_INFO osd_pos_enhance_ir;
-
-
-extern OSD_INFO osd_pos_z;
-extern OSD_INFO osd_pos_s;
-extern OSD_INFO osd_pos_n;
-extern OSD_INFO osd_pos_m;
-extern OSD_INFO osd_pos_w;
-
-extern OSD_INFO osd_pos_arrow;
-extern OSD_INFO osd_pos_arrow_tail;
-extern OSD_INFO osd_pos_arrow_blank;
-extern OSD_INFO osd_pos_az;
-extern OSD_INFO osd_pos_el;
-extern OSD_INFO osd_pos_rng;
-extern OSD_INFO osd_pos_top_char;
-
-
-// zyw add end
-
 extern OSD_INFO osd_pos_inertia_velocitycompensation_workmode;
 extern OSD_INFO osd_pos_north_angle;
 extern OSD_INFO osd_pos_30;
@@ -139,41 +107,12 @@ extern unsigned short sys_mode_slave2_vcp[32];//position slave
 extern unsigned short sys_mode_cage2[32];//lock
 extern unsigned short sys_mode_cage2_vcp[32];//lock
 
-extern unsigned short osd_zyw[32];//lock
 
-extern unsigned short osd_arrow[32];
-extern unsigned short osd_arrow_tail[32];
-extern unsigned short osd_top_top[32];
 extern unsigned short osd_blank[32];    //xiao yin
 extern unsigned short osd_sensor_viewangle_enhance_viewstate_bricont_ir[32];
-extern unsigned short osd_fov[32];
 extern unsigned short osd_inertia_velocitycompensation_workmode[32];
 extern unsigned short osd_tv[32];    //dian shi
 extern unsigned short osd_ir[32];    //hong wai
-//zyw add 20250210
-extern unsigned short osd_ldr[32];    //LDR zyw add
-
-extern unsigned short osd_enhance_avt[32];
-extern unsigned short osd_enhance_tv[32];
-extern unsigned short osd_enhance_ir[32];
-
-extern unsigned short osd_vcp[32];
-
-
-extern unsigned short osd_z[32];
-extern unsigned short osd_s[32];
-extern unsigned short osd_n[32];
-extern unsigned short osd_m[32];
-extern unsigned short osd_w[32];
-
-extern unsigned short osd_OPERATIONAL_MESSAGE[32];
-extern unsigned short osd_az[32];
-extern unsigned short osd_el[32];
-extern unsigned short osd_rng[32];
-extern unsigned short osd_top_char[32];
-
-
-//-------------------------------------------------------------------
 // unsigned short osd_light[32];    //hong wai
 extern unsigned short osd_medium[32];    //zhong
 extern unsigned short osd_heavy[32];    //zhong

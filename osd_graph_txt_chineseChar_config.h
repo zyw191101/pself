@@ -1,7 +1,7 @@
 /*
  * osd_graph_txt_chineseChar_config.h
  *
- *  Created on: 2023ï¿½ï¿½1ï¿½ï¿½8ï¿½ï¿½
+ *  Created on: 2023Äê1ÔÂ8ÈÕ
  *      Author: FYC
  */
 
@@ -72,49 +72,7 @@ typedef struct{
 
 #define CHINESE_CHAR_INDEX
 
-
 #ifdef CHINESE_CHAR_INDEX
-	#define ASCII_24_ARROW_RIGHT_BAR 			22 //	up arrow
-	#define ASCII_23_ARROW_LEFT_BAR 			23 //	up arrow
-	#define ASCII_24_ARROW_UP 					24 //	up arrow
-	#define ASCII_25_ARROW_DOWN 				25 //	down arrow
-	#define ASCII_26_ARROW_RIGHT				26 //   right arrow ->
-	#define ASCII_27_ARROW_LEFT 				27 //   left  arrow <-
-	#define ASCII_28_PENTA_STAR 				28 //   five point star
-	#define ASCII_29_LAZER_FORBID_LAUNCH 		29 //ref comm agreement 4.1.2.7
-	#define ASCII_32_BLANK 						32
-
-
-	#define ASCII_CHAR_COLS 					16
-	#define ASCII_CHAR_ROWS 					32
-	#define ASCII_CHAR_NUM 						128
-
-	#define ASCII_A 65
-	#define ASCII_B 66
-	#define ASCII_C 67
-	#define ASCII_D 68
-	#define ASCII_E 69
-	#define ASCII_F 70
-	#define ASCII_G 71
-	#define ASCII_H 72
-	#define ASCII_I 73
-	#define ASCII_J 74
-	#define ASCII_K 75
-	#define ASCII_L 76
-	#define ASCII_M 77
-	#define ASCII_N 78
-	#define ASCII_O 79
-	#define ASCII_P 80
-	#define ASCII_Q 81
-	#define ASCII_R 82
-	#define ASCII_S 83
-	#define ASCII_T 84
-	#define ASCII_U 85
-	#define ASCII_V 86
-	#define ASCII_W 87
-	#define ASCII_X 88
-	#define ASCII_Y 89
-	#define ASCII_Z 90
 
 	#define	CH_idx_an_128_1		128
 	#define	CH_idx_an_129_2		129

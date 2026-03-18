@@ -68,12 +68,6 @@ extern unsigned int* VDMA_SDI_MIPI_HANDLE;
 	extern bool requst_temper;
 #endif
 
-//// 20250526
-//#ifdef IR_COLORMAP
-//	extern unsigned int* IR_COLORMAP_HANDLE;
-//
-//#endif
-
 #ifdef DETECT_VIDEO_INPUT
 	// 2023.01.31 added by fengyachun to detect video input & switch video output clk src
 	extern unsigned int* AXI_GPIO_DETECT_VIDEO_SWITCH_CLK_HANDLE;
@@ -169,7 +163,6 @@ extern unsigned int* VIDEO_MIXER_HANDLE;
 
 extern unsigned int* GPIO_CROSS_CTRL_HANDLE;
 extern unsigned int* GPIO_TAR_Graph_Color_HANDLE;
-extern unsigned int* GPIO_VDMA_FRAME_INDEX_HANDLE;
 
 extern unsigned char* pChar_VDMA_IMG_BUF_TV_1;
 extern unsigned char* pChar_VDMA_IMG_BUF_TV_2;
