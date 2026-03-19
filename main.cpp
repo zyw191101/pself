@@ -1276,7 +1276,7 @@ int main(int argc, char *argv[])
     log_info("%s (%s %s)", app_name, __DATE__, __TIME__);
     log_info("Command line: %s", join(argc, argv, " ").c_str());
 
-    const auto software_version = "Version 0.1.0.2, 2025-01-15 zhangyuanwei";
+    const auto software_version = "Version 0.1.0.2, 2025-01-15 260319test";
     log_info("%s", software_version);
 #ifdef OS_UNIX
     // video_init();
@@ -5659,6 +5659,8 @@ int main(int argc, char *argv[])
                         osd_laser_work_mode[1] = CH_idx_ce_211_2;
                         osd_laser_work_mode[2] = CH_idx_ju_584_1;
                         osd_laser_work_mode[3] = CH_idx_ju_585_2;
+                        // 闪烁：以0.5秒为周期，显示'﹡'或空格
+                        osd_laser_work_mode[19] = (fmod(get_wall_time(), 1.0) < 0.5) ? '*' : ' ';
                         osd_pos_laser_work_mode.str_arr = osd_laser_work_mode;
                         update_OSD_chinese(osd_pos_laser_work_mode, OSD_BRAM_HANDLE);
                         break;
@@ -5682,6 +5684,8 @@ int main(int argc, char *argv[])
                         osd_laser_work_mode[1] = CH_idx_zhao_1155_2;
                         osd_laser_work_mode[2] = CH_idx_she_814_1;
                         osd_laser_work_mode[3] = CH_idx_she_815_2;
+                        // 闪烁：以0.5秒为周期，显示'★'或空格
+                        osd_laser_work_mode[19] = (fmod(get_wall_time(), 1.0) < 0.5) ? ASCII_28_PENTA_STAR : ' ';
                         osd_pos_laser_work_mode.str_arr = osd_laser_work_mode;
                         update_OSD_chinese(osd_pos_laser_work_mode, OSD_BRAM_HANDLE);
                         break;
