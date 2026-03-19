@@ -498,6 +498,14 @@ void HostUARTDevice::read(const uint8_t *data, int len)
 
 void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, const uint8_t *params)
 {
+    // Print received command info
+//    printf("[HOST UART] Received command: ID=0x%02X, param_count=%u, params=", command_id, param_count);
+//    for (uint32_t i = 0; i < param_count && i < 16; ++i)
+//    {
+//        printf("%02X ", params[i]);
+//    }
+//    printf("\n");
+    
     // write_data.clear()
     // write_data_length = 0;
     new_comm_recv = true;
@@ -1740,6 +1748,12 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 //		this->laser_forbid = true;
 		PARSE_DATA_LE(params, &ldr_status);
 		bool skip_retiming = false;
+		// ===== 打印初始状态 =====
+//		printf("[0x1A] === BEFORE === ldr_status=0x%02X | ldr_power_on=%d ldr_work_ok=%d ldr_mode=%d ldr_forbid=%d | laser_power=%d laser_work=%d laser_mode=0x%02X laser_forbid=%d laser_alarm=%d\n",
+//			ldr_status,
+//			(int)ldr_power_on, (int)ldr_work_ok, (int)ldr_mode, (int)ldr_forbid,
+//			(int)this->laser_power, (int)this->laser_work, (int)this->laser_mode,
+//			(int)this->laser_forbid, (int)this->laser_alarm);
 		switch(ldr_status)
 		{
 			case 0x01:
@@ -1835,7 +1849,12 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
 		// show_str_ldr_status = map_at(ldr_status_2_str, ldr_status, "Unknown LDR status");
 		// show_str_ldr_status = pad_str(show_str_ldr_status, 6, -1);
 		//DO_EVERY_N_MS(write_command_print_every, log_info, "[%ds/p] %s change show str (index=%d): show_str_ldr_status (str='%s', len=%d)", write_command_print_every / 1000, name.c_str(), visit_time, show_str_ldr_status.c_str(), (int) show_str_ldr_status.size());
-
+		// ===== 打印执行后状态 =====
+//		printf("[0x1A] === AFTER  === ldr_status=0x%02X | ldr_power_on=%d ldr_work_ok=%d ldr_mode=%d ldr_forbid=%d skip_retiming=%d | laser_power=%d laser_work=%d laser_mode=0x%02X laser_forbid=%d laser_alarm=%d\n",
+//			ldr_status,
+//			(int)ldr_power_on, (int)ldr_work_ok, (int)ldr_mode, (int)ldr_forbid, (int)skip_retiming,
+//			(int)this->laser_power, (int)this->laser_work, (int)this->laser_mode,
+//			(int)this->laser_forbid, (int)this->laser_alarm);
 		{
 			uint8_t params[1] = {command_id};
 			// write_command(0x04, SIZEOF(params), params);

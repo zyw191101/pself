@@ -141,6 +141,7 @@ extern unsigned short osd_geotrack[32];    //di li gen zong
 extern unsigned short osd_yaw[32];    //fang wei
 extern unsigned short osd_pitch[32];    //fu yang
 extern unsigned short osd_laser_work_mode[32];    //ce ju
+extern unsigned short osd_laser_work_five_seconds_stop[32];
 extern unsigned short osd_laser_work_mode_stop[32];
 extern unsigned short osd_shine[32];    //zhao she
 extern unsigned short osd_stop[32];    //tingzhi

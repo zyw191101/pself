@@ -11,6 +11,9 @@
 #include <thread>
 #endif
 
+static double laser_stop_time = -1;  // -1表示未在倒计时
+static bool laser_five_sec_showing = false;
+static bool laser_had_worked = false;  // 是否曾经进行过测距/照射
 
 #define CHINESE_OSD_IN_PL
 #ifdef CHINESE_OSD_IN_PL
@@ -1273,7 +1276,7 @@ int main(int argc, char *argv[])
     log_info("%s (%s %s)", app_name, __DATE__, __TIME__);
     log_info("Command line: %s", join(argc, argv, " ").c_str());
 
-    const auto software_version = "Version 0.1.0.2, 2025-01-15";
+    const auto software_version = "Version 0.1.0.2, 2025-01-15 zhangyuanwei";
     log_info("%s", software_version);
 #ifdef OS_UNIX
     // video_init();
@@ -5620,10 +5623,11 @@ int main(int argc, char *argv[])
 			uint8_t laser_mode = HostUARTDevice::instance()->laser_mode;
 			if(laser_power != HostUARTDevice::instance()->laser_power)
 				laser_power = HostUARTDevice::instance()->laser_power;
-			for(int i = 0; i<(HostUARTDevice::instance()->laser_ranging_distance_str).size(); i++)
-			{
-				osd_laser_work_mode[i+12] = (HostUARTDevice::instance()->laser_ranging_distance_str)[i];
-			}
+				for(int i = 0; i<(HostUARTDevice::instance()->laser_ranging_distance_str).size(); i++)
+				{
+					osd_laser_work_mode[i+12] = (HostUARTDevice::instance()->laser_ranging_distance_str)[i];
+					osd_laser_work_five_seconds_stop[i+12] = (HostUARTDevice::instance()->laser_ranging_distance_str)[i];  // 对齐下标11
+				}
 			if(show_level==1 || show_level==2 || show_level==5 || show_level==6)
 			{
 				osd_pos_laser_work_mode.config.para.Enable = 1;
@@ -5637,6 +5641,10 @@ int main(int argc, char *argv[])
                 switch (laser_mode)
                 {
                     case 0x07:
+                        // 收到新测距，清零延迟逻辑
+                        laser_stop_time = -1;
+                        laser_five_sec_showing = false;
+                        laser_had_worked = true;  // 标记曾经工作过
                         if (get_wall_time() - HostUARTDevice::instance()->laser_work_start > HostUARTDevice::instance()->laser_work_time + 1)
                         {
                             HostUARTDevice::instance()->laser_work_time += 1;
@@ -5654,7 +5662,12 @@ int main(int argc, char *argv[])
                         osd_pos_laser_work_mode.str_arr = osd_laser_work_mode;
                         update_OSD_chinese(osd_pos_laser_work_mode, OSD_BRAM_HANDLE);
                         break;
+
                     case 0x08:
+                        // 收到新照射，清零延迟逻辑
+                        laser_stop_time = -1;
+                        laser_five_sec_showing = false;
+                        laser_had_worked = true;  // 标记曾经工作过
                         if (get_wall_time() - HostUARTDevice::instance()->laser_work_start > HostUARTDevice::instance()->laser_work_time + 1)
                         {
                             HostUARTDevice::instance()->laser_work_time += 1;
@@ -5672,24 +5685,58 @@ int main(int argc, char *argv[])
                         osd_pos_laser_work_mode.str_arr = osd_laser_work_mode;
                         update_OSD_chinese(osd_pos_laser_work_mode, OSD_BRAM_HANDLE);
                         break;
+
                     case 0x09:
-                        osd_pos_laser_work_mode.str_arr = osd_laser_work_mode_stop;
-                        update_OSD_chinese(osd_pos_laser_work_mode, OSD_BRAM_HANDLE);
-                        break;
                     default:
-                        osd_pos_laser_work_mode.str_arr = osd_laser_work_mode_stop;
-                        update_OSD_chinese(osd_pos_laser_work_mode, OSD_BRAM_HANDLE);
-                        break;                    
-                    // case 0x20:
-                    //     osd_pos_laser_work_mode.str_arr = osd_blank;
-                    //     update_OSD_chinese(osd_pos_laser_work_mode, OSD_BRAM_HANDLE);
-                    //     break;                    
+                        if(!laser_had_worked)
+                        {
+                            // 从未工作过，直接显示激光准备，不计时
+                            osd_pos_laser_work_mode.str_arr = osd_laser_work_mode_stop;
+                            update_OSD_chinese(osd_pos_laser_work_mode, OSD_BRAM_HANDLE);
+                            break;
+                        }
+                        if(laser_stop_time < 0)
+                        {
+                            // 刚切到停止，记录时间，开始5秒倒计时
+                            laser_stop_time = get_wall_time();
+                            laser_five_sec_showing = true;
+//                            printf("[OSD] case 0x09 开始计时: laser_had_worked=%d laser_stop_time=%.2f laser_five_sec_showing=%d\n", (int)laser_had_worked, laser_stop_time, (int)laser_five_sec_showing);
+
+                        }
+
+                        if(laser_five_sec_showing)
+                        {
+                            if(get_wall_time() - laser_stop_time < 5.0)
+                            {
+                                // 5秒内：显示激光准备+距离
+                                osd_pos_laser_work_mode.str_arr = osd_laser_work_five_seconds_stop;
+                                update_OSD_chinese(osd_pos_laser_work_mode, OSD_BRAM_HANDLE);
+                            }
+                            else
+                            {
+                                // 5秒到：消隐，停止更新
+                                laser_five_sec_showing = false;
+                                laser_had_worked = false;  // 5秒结束，重置，回到初始状态
+//                                printf("[OSD] case 0x09 初始状态(未曾工作) → osd_laser_work_mode_stop\n");
+                                osd_pos_laser_work_mode.str_arr = osd_laser_work_mode_stop;
+                                update_OSD_chinese(osd_pos_laser_work_mode, OSD_BRAM_HANDLE);
+                            }
+                        }
+                        break;
+                // case 0x20:
+                //     osd_pos_laser_work_mode.str_arr = osd_blank;
+                //     update_OSD_chinese(osd_pos_laser_work_mode, OSD_BRAM_HANDLE);
+                //     break;
                 }
             }
             else
             {
+                // 激光关闭，同时清零延迟状态
+                laser_stop_time = -1;
+                laser_five_sec_showing = false;
+                laser_had_worked = false;  // 激光关闭，完全重置
                 osd_pos_laser_work_mode.str_arr = osd_laserclose;
-                update_OSD_chinese(osd_pos_laser_work_mode, OSD_BRAM_HANDLE);                
+                update_OSD_chinese(osd_pos_laser_work_mode, OSD_BRAM_HANDLE);
             }
 
 			// command ID 0x05   deorbitting time  HostUARTDevice::instance()->weapon_work_time
