@@ -499,12 +499,12 @@ void HostUARTDevice::read(const uint8_t *data, int len)
 void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, const uint8_t *params)
 {
     // Print received command info
-    printf("[HOST UART] Received command: ID=0x%02X, param_count=%u, params=", command_id, param_count);
-    for (uint32_t i = 0; i < param_count && i < 16; ++i)
-    {
-        printf("%02X ", params[i]);
-    }
-    printf("\n");
+//    printf("[HOST UART] Received command: ID=0x%02X, param_count=%u, params=", command_id, param_count);
+//    for (uint32_t i = 0; i < param_count && i < 16; ++i)
+//    {
+//        printf("%02X ", params[i]);
+//    }
+//    printf("\n");
     
     // write_data.clear()
     // write_data_length = 0;
