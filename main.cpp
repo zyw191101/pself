@@ -4835,6 +4835,11 @@ int main(int argc, char *argv[])
 						osd_sensor_viewangle_enhance_viewstate_bricont_ir[14] = CH_idx_zhong_1198_1;
 						osd_sensor_viewangle_enhance_viewstate_bricont_ir[15] = CH_idx_zhong_1199_2;
 					}
+                    case '4':
+                    {
+                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[14] = CH_idx_tou_916_1;
+                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[15] = CH_idx_tou_917_2;
+                    }
 					break;
 					default:
 						break;
@@ -5139,7 +5144,7 @@ int main(int argc, char *argv[])
 						osd_inertia_velocitycompensation_workmode[21] = ' ';
                     }
                         break;
-                    case 0x0b:
+                    case 0x3d:
                     {
 						osd_inertia_velocitycompensation_workmode[14] = CH_idx_qian_750_1;
 						osd_inertia_velocitycompensation_workmode[15] = CH_idx_qian_751_2;
@@ -5249,14 +5254,14 @@ int main(int argc, char *argv[])
 			}
 
 			// command ID 0x45  focus value  HostUARTDevice::instance()->focus_str
-			// 借用槽位7（惯性/工作模式）的[23]~[27]格，[0]~[21]由工作模式逻辑使用，[22]留空隔开
+			// 借用槽位7（惯性/工作模式）的[]~[27]格，[0]~[21]由工作模式逻辑使用，[22]留空隔开
 			static std::string focus_str = "  ";
 			if(focus_str.compare(HostUARTDevice::instance()->focus_str) != 0)
 			{
 				focus_str = HostUARTDevice::instance()->focus_str;
 				for(int i = 0; i < 5; i++)
 				{
-					osd_inertia_velocitycompensation_workmode[23 + i] = (i < (int)focus_str.size()) ? focus_str[i] : 0;
+					osd_inertia_velocitycompensation_workmode[22 + i] = (i < (int)focus_str.size()) ? focus_str[i] : 0;
 				}
 				osd_pos_inertia_velocitycompensation_workmode.str_arr = osd_inertia_velocitycompensation_workmode;
 				update_OSD_chinese(osd_pos_inertia_velocitycompensation_workmode, OSD_BRAM_HANDLE);
