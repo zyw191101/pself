@@ -44,7 +44,7 @@ OSD_INFO osd_pos_time;
 OSD_INFO osd_pos_sensor_viewangle_enhance_viewstate_bricont_ir;
 OSD_INFO osd_pos_inertia_velocitycompensation_workmode;
 OSD_INFO osd_pos_north_angle;
-OSD_INFO osd_pos_focus;
+OSD_INFO osd_pos_29;
 OSD_INFO osd_pos_30;
 OSD_INFO osd_pos_31;
 OSD_INFO osd_pos_init_sys[6];
@@ -82,7 +82,6 @@ unsigned short osd_lockcurrent[32]  =       {CH_idx_suo_886_1, CH_idx_suo_887_2,
 unsigned short osd_geotrack[32]     =       {CH_idx_di_298_1, CH_idx_di_299_2, CH_idx_li_632_1, CH_idx_li_633_2, CH_idx_gen_406_1, CH_idx_gen_407_2, CH_idx_zong_1224_1, CH_idx_zong_1225_2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 unsigned short osd_yaw[32]          =       {CH_idx_fang_352_1, CH_idx_fang_353_2, CH_idx_wei_946_1, CH_idx_wei_947_2, ':',' ', '0', '0','0','.','0','0',DEGREE_SYMBOL_ASCII,' ', ' ', '0','0','0','.','0','0', DEGREE_SYMBOL_ASCII, '/','s',0,0,0,0,0,0,0,0 };
 unsigned short osd_pitch[32]        =       {CH_idx_fu_370_1, CH_idx_fu_371_2, CH_idx_yang_1054_1, CH_idx_yang_1055_2, ':',' ', '0', '0','0','.','0','0',DEGREE_SYMBOL_ASCII,' ', ' ', '0','0','0','.','0','0', DEGREE_SYMBOL_ASCII, '/','s',0,0,0,0,0,0,0,0 };
-unsigned short osd_focus[32]        =       {0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 unsigned short osd_laser_work_mode[32]       =      {CH_idx_ce_210_1, CH_idx_ce_211_2, CH_idx_ju_584_1, CH_idx_ju_585_2, ':', ' ', '0','0','0','s',' ',' ','0','0','0','0','0','m',0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 unsigned short osd_laser_work_five_seconds_stop[32] = {CH_idx_ji_506_1, CH_idx_ji_507_2, CH_idx_guang_432_1, CH_idx_guang_433_2, CH_idx_zhun_1216_1, CH_idx_zhun_1217_2, CH_idx_bei_148_1, CH_idx_bei_149_2, 0, 0, 0, 0,'0','0','0','0','0', 'm', 0, 0,0,0,0,0,0,0,0,0,0,0,0,0};
 unsigned short osd_laser_work_mode_stop[32]  =      {CH_idx_ji_506_1,CH_idx_ji_507_2,CH_idx_guang_432_1,CH_idx_guang_433_2,CH_idx_zhun_1216_1,CH_idx_zhun_1217_2,CH_idx_bei_148_1,CH_idx_bei_149_2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
@@ -482,17 +481,17 @@ void osd_init_chinese()
 	osd_pos_north_angle.str_arr = osd_blank;
 	update_OSD_chinese(osd_pos_north_angle, OSD_BRAM_HANDLE);
 
-	// 0x45 focus value
-	osd_pos_focus.osd_idx = 29;
-	osd_pos_focus.config.para.Enable = 1;
-	osd_pos_focus.config.para.valid_length = 0;
-	osd_pos_focus.config.para.ver_y = 20;
-	osd_pos_focus.config.para.hor_x = 800;
-	osd_pos_focus.str_arr = osd_blank;
-	update_OSD_chinese(osd_pos_focus, OSD_BRAM_HANDLE);
+	/* 0, 1, 2, ..., 26, 27, 28  HAVE been used  */
 
-	/* 0, 1, 2, ..., 26, 27, 28, 29  HAVE been used  */
-	
+	// 29 spare（旧版本程序曾将该槽位 Enable 写 1，BRAM 掉电前不清零，须显式写 0）
+	osd_pos_29.osd_idx = 29;
+	osd_pos_29.config.para.Enable = 0;
+	osd_pos_29.config.para.valid_length = 0;
+	osd_pos_29.config.para.ver_y = 460;
+	osd_pos_29.config.para.hor_x = 1720;
+	osd_pos_29.str_arr = osd_blank;
+	update_OSD_chinese(osd_pos_29, OSD_BRAM_HANDLE);
+
 	// 30 position_30_str_info
 	osd_pos_30.osd_idx = 30;
 	osd_pos_30.config.para.Enable = 0;

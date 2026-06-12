@@ -5249,24 +5249,17 @@ int main(int argc, char *argv[])
 			}
 
 			// command ID 0x45  focus value  HostUARTDevice::instance()->focus_str
+			// 借用槽位7（惯性/工作模式）的[23]~[27]格，[0]~[21]由工作模式逻辑使用，[22]留空隔开
 			static std::string focus_str = "  ";
-			if(level_changed || focus_str.compare(HostUARTDevice::instance()->focus_str) != 0)
+			if(focus_str.compare(HostUARTDevice::instance()->focus_str) != 0)
 			{
 				focus_str = HostUARTDevice::instance()->focus_str;
-				for(int i = 0; i<focus_str.size(); i++)
+				for(int i = 0; i < 5; i++)
 				{
-					osd_focus[i] = focus_str[i];
+					osd_inertia_velocitycompensation_workmode[23 + i] = (i < (int)focus_str.size()) ? focus_str[i] : 0;
 				}
-				if(show_level==1 || show_level==2 || show_level==5 || show_level==6)
-				{
-					osd_pos_focus.config.para.Enable = 1;
-				}
-				else
-				{
-					osd_pos_focus.config.para.Enable = 0;
-				}
-				osd_pos_focus.str_arr = osd_focus;
-				update_OSD_chinese(osd_pos_focus, OSD_BRAM_HANDLE);
+				osd_pos_inertia_velocitycompensation_workmode.str_arr = osd_inertia_velocitycompensation_workmode;
+				update_OSD_chinese(osd_pos_inertia_velocitycompensation_workmode, OSD_BRAM_HANDLE);
 			}
 
 			// command ID 0x21 location ID 0x01 date  HostUARTDevice::instance()->date_str
