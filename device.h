@@ -215,6 +215,7 @@ public:
 	std::string shine_code_str;
 	std::string shine_time_str;
 	std::string yaw_view_angle_str;
+	std::string magnification_str;
 	uint8_t sensor_view_size;
     bool sensor_view_changed;
 	bool ir_power;

@@ -1647,6 +1647,7 @@ int main(int argc, char *argv[])
     static uint8_t brigheness_contrast_modify = 'f';
     static uint8_t ir_pola = 0xff;
     static std::string yaw_view_angle_str = "---";
+    static std::string magnification_str = "---";
     static float north_angle = 0;
     static std::string north_angle_str = "---";
     static bool ir_power = false;
@@ -4771,7 +4772,7 @@ int main(int argc, char *argv[])
                 }				
 
 			if(level_changed || channel_disp != HostUARTDevice::instance()->channel_disp || enhance_level != HostUARTDevice::instance()->enhance_level || sensor_view_size != HostUARTDevice::instance()->sensor_view_size || ir_power != HostUARTDevice::instance()->ir_power
-			|| laser_power != HostUARTDevice::instance()->laser_power || brigheness_contrast_modify != HostUARTDevice::instance()->brigheness_contrast_modify || ir_pola != HostUARTDevice::instance()->ir_pola || yaw_view_angle_str.compare(HostUARTDevice::instance()->yaw_view_angle_str) != 0)
+			|| laser_power != HostUARTDevice::instance()->laser_power || brigheness_contrast_modify != HostUARTDevice::instance()->brigheness_contrast_modify || ir_pola != HostUARTDevice::instance()->ir_pola || yaw_view_angle_str.compare(HostUARTDevice::instance()->yaw_view_angle_str) != 0 || magnification_str.compare(HostUARTDevice::instance()->magnification_str) != 0)
 			{
 				// command ID 0x02 HostUARTDevice::instance()->channel device.cpp case 0x02   1
 				channel_disp = HostUARTDevice::instance()->channel_disp;
@@ -4847,59 +4848,65 @@ int main(int argc, char *argv[])
 				}
 				//ID 0x17   HostUARTDevice::instance()->sensor_view_size     4
                 sensor_view_size = HostUARTDevice::instance()->sensor_view_size;
-				switch (sensor_view_size)
-				{
-					case 1:
-					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[18] = CH_idx_da_276_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[19] = CH_idx_da_277_2;
-					}
-					break;
-					case 2:
-					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[18] = CH_idx_zhong_1192_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[19] = CH_idx_zhong_1193_2;
-					}
-					break;
-					case 3:
-					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[18] = CH_idx_xiao_1002_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[19] = CH_idx_xiao_1003_2;
-					}
-					break;
-					case 4:
-					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[18] = CH_idx_chao_228_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[19] = CH_idx_chao_229_2;
-					}
-                    break;
-					case 5:
-					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[18] = 'X';
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[19] = '2';
-					}
-					break;
-					default:
-						break;
-				}
+				// [18][19] 原由 sensor_view_size 驱动（大/中/小/超/X2），改为显示 0x26 Byte5~6 放大倍率
+				// switch (sensor_view_size)
+				// {
+				// 	case 1:
+				// 	{
+				// 		osd_sensor_viewangle_enhance_viewstate_bricont_ir[18] = CH_idx_da_276_1;
+				// 		osd_sensor_viewangle_enhance_viewstate_bricont_ir[19] = CH_idx_da_277_2;
+				// 	}
+				// 	break;
+				// 	case 2:
+				// 	{
+				// 		osd_sensor_viewangle_enhance_viewstate_bricont_ir[18] = CH_idx_zhong_1192_1;
+				// 		osd_sensor_viewangle_enhance_viewstate_bricont_ir[19] = CH_idx_zhong_1193_2;
+				// 	}
+				// 	break;
+				// 	case 3:
+				// 	{
+				// 		osd_sensor_viewangle_enhance_viewstate_bricont_ir[18] = CH_idx_xiao_1002_1;
+				// 		osd_sensor_viewangle_enhance_viewstate_bricont_ir[19] = CH_idx_xiao_1003_2;
+				// 	}
+				// 	break;
+				// 	case 4:
+				// 	{
+				// 		osd_sensor_viewangle_enhance_viewstate_bricont_ir[18] = CH_idx_chao_228_1;
+				// 		osd_sensor_viewangle_enhance_viewstate_bricont_ir[19] = CH_idx_chao_229_2;
+				// 	}
+                //     break;
+				// 	case 5:
+				// 	{
+				// 		osd_sensor_viewangle_enhance_viewstate_bricont_ir[18] = 'X';
+				// 		osd_sensor_viewangle_enhance_viewstate_bricont_ir[19] = '2';
+				// 	}
+				// 	break;
+				// 	default:
+				// 		break;
+				// }
+				// command ID 0x26 Byte5~Byte6 放大倍率，"xx.xX" 占 [18]~[22]，不足 5 字符右补空格
+				magnification_str = HostUARTDevice::instance()->magnification_str;
+				for(int i = 0; i < 5; i++)
+					osd_sensor_viewangle_enhance_viewstate_bricont_ir[18 + i] = (i < (int)magnification_str.size()) ? magnification_str[i] : ' ';
+				osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = ' ';
 				//command ID 0x21  location ID 0x05   HostUARTDevice::instance()->brigheness_contrast_modify    5
 				brigheness_contrast_modify = HostUARTDevice::instance()->brigheness_contrast_modify;
 				switch (brigheness_contrast_modify)
 				{
 					case '0':
 					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[22] = CH_idx_shou_848_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = CH_idx_shou_849_2;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_dong_326_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_dong_327_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_shou_848_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_shou_849_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[26] = CH_idx_dong_326_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[27] = CH_idx_dong_327_2;
 					}
 					break;
 					case '1':
 					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[22] = CH_idx_zi_1220_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = CH_idx_zi_1221_2;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_dong_326_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_dong_327_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_zi_1220_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_zi_1221_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[26] = CH_idx_dong_326_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[27] = CH_idx_dong_327_2;
 					}
 					break;
 					default:
