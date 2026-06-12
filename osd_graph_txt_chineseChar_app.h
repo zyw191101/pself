@@ -66,6 +66,7 @@ extern OSD_INFO osd_pos_time;
 extern OSD_INFO osd_pos_sensor_viewangle_enhance_viewstate_bricont_ir;
 extern OSD_INFO osd_pos_inertia_velocitycompensation_workmode;
 extern OSD_INFO osd_pos_north_angle;
+extern OSD_INFO osd_pos_focus;
 extern OSD_INFO osd_pos_30;
 extern OSD_INFO osd_pos_31;
 extern OSD_INFO osd_pos_init_sys[6];
@@ -139,6 +140,7 @@ extern unsigned short osd_track[32];    //gen zong
 extern unsigned short osd_lockcurrent[32];    //suo ding dang qian
 extern unsigned short osd_geotrack[32];    //di li gen zong
 extern unsigned short osd_yaw[32];    //fang wei
+extern unsigned short osd_focus[32];    //jiao ju
 extern unsigned short osd_pitch[32];    //fu yang
 extern unsigned short osd_laser_work_mode[32];    //ce ju
 extern unsigned short osd_laser_work_five_seconds_stop[32];

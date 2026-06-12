@@ -259,6 +259,8 @@ public:
     double system_version_start;
     bool system_version_enable;
 	std::string north_angle_str;
+	uint8_t focus_sensor_id;
+	std::string focus_str;
 };
 
 class XJ3UARTDevice: public Device
