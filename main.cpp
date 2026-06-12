@@ -1276,7 +1276,7 @@ int main(int argc, char *argv[])
     log_info("%s (%s %s)", app_name, __DATE__, __TIME__);
     log_info("Command line: %s", join(argc, argv, " ").c_str());
 
-    const auto software_version = "Version 0.1.0.2, 2025-01-15 260319test";
+    const auto software_version = "Version 0.1.0.2, 2025-01-15";
     log_info("%s", software_version);
 #ifdef OS_UNIX
     // video_init();
@@ -5246,6 +5246,27 @@ int main(int argc, char *argv[])
 				}
 				osd_pos_pitch.str_arr = osd_pitch;
 				update_OSD_chinese(osd_pos_pitch, OSD_BRAM_HANDLE);
+			}
+
+			// command ID 0x45  focus value  HostUARTDevice::instance()->focus_str
+			static std::string focus_str = "  ";
+			if(level_changed || focus_str.compare(HostUARTDevice::instance()->focus_str) != 0)
+			{
+				focus_str = HostUARTDevice::instance()->focus_str;
+				for(int i = 0; i<focus_str.size(); i++)
+				{
+					osd_focus[i] = focus_str[i];
+				}
+				if(show_level==1 || show_level==2 || show_level==5 || show_level==6)
+				{
+					osd_pos_focus.config.para.Enable = 1;
+				}
+				else
+				{
+					osd_pos_focus.config.para.Enable = 0;
+				}
+				osd_pos_focus.str_arr = osd_focus;
+				update_OSD_chinese(osd_pos_focus, OSD_BRAM_HANDLE);
 			}
 
 			// command ID 0x21 location ID 0x01 date  HostUARTDevice::instance()->date_str

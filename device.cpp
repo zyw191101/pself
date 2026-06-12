@@ -217,6 +217,8 @@ HostUARTDevice::HostUARTDevice()
     north_angle_str = pad_str(north_angle_str,7,1);
     shine_code_str = " ";
     shine_time_str = " ";
+    focus_sensor_id = 0;
+    focus_str = pad_str(" ", 5, -1);
 
 }
 
@@ -1306,6 +1308,17 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
             write_command_new(0x04, SIZEOF(params), params, write_data, &write_data_length);
             //DO_EVERY_N_MS(write_command_print_every, log_info, "[%ds/p] %s write command (index=%d): ack (command_id=0x%02X)", write_command_print_every / 1000, name.c_str(), visit_time, command_id);
         }
+    }
+        break;
+    case 0x45:
+    {
+        int byte_index = 0;
+        uint8_t sensor_id;
+        PARSE_DATA_LE(params, &sensor_id);
+        uint16_t focus;
+        PARSE_DATA_LE(params, &focus);
+        this->focus_sensor_id = sensor_id;
+        this->focus_str = pad_str(format("%d", focus), 5, -1);
     }
         break;
     case 0x49:
