@@ -4835,6 +4835,7 @@ int main(int argc, char *argv[])
 						osd_sensor_viewangle_enhance_viewstate_bricont_ir[14] = CH_idx_zhong_1198_1;
 						osd_sensor_viewangle_enhance_viewstate_bricont_ir[15] = CH_idx_zhong_1199_2;
 					}
+					break;
                     case '4':
                     {
                         osd_sensor_viewangle_enhance_viewstate_bricont_ir[14] = CH_idx_tou_916_1;
