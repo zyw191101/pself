@@ -2490,7 +2490,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
         {
             int16_t magnification;
             PARSE_DATA_LE(params, &magnification);
-            this->magnification_str = format("%.1lfX", magnification * 1e-1);
+            this->magnification_str = format("X%.1lf", magnification * 1e-1);
             this->magnification_str = pad_str(this->magnification_str, 5, -1);
         }
         //DO_EVERY_N_MS(read_command_print_every, log_info, "[%ds/p] %s read command (index=%d): update_yaw_pitch_view_angle (tv_yaw_view_angle=%.2lf, ir_yaw_view_angle=%.2lf)", read_command_print_every / 1000, name.c_str(), visit_time, tv_yaw_view_angle * 1e-2, ir_yaw_view_angle * 1e-2);

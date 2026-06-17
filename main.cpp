@@ -4839,8 +4839,8 @@ int main(int argc, char *argv[])
 					break;
                     case '4':
                     {
-                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_tou_916_1;
-                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_tou_917_2;
+                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_wu_964_1;
+                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_wu_965_2;
                     }
 					break;
 					default:
