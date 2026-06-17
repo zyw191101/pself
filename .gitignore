@@ -55,6 +55,8 @@
 /.vscode/
 /resource/
 
+doc/
+
 # 其他常见忽略项
 .DS_Store         # macOS 临时文件
 *.iml             # IntelliJ IDEA 模块文件
