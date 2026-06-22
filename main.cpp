@@ -4804,8 +4804,8 @@ int main(int argc, char *argv[])
 				// command ID 0x26   HostUARTDevice::instance()->yaw_view_angle_str    2
 				yaw_view_angle_str = HostUARTDevice::instance()->yaw_view_angle_str;
 				for(int i = 0; i<6; i++)
-					osd_sensor_viewangle_enhance_viewstate_bricont_ir[i+4] = (HostUARTDevice::instance()->yaw_view_angle_str)[i];
-				osd_sensor_viewangle_enhance_viewstate_bricont_ir[10] = ' ';
+					osd_sensor_viewangle_enhance_viewstate_bricont_ir[i+3] = (HostUARTDevice::instance()->yaw_view_angle_str)[i];
+				osd_sensor_viewangle_enhance_viewstate_bricont_ir[9] = ' ';
 				//command ID 0x21 location ID 0x03  HostUARTDevice::instance()->enhance_level   3
                 if(enhance_level != HostUARTDevice::instance()->enhance_level)
 				{
@@ -4816,32 +4816,32 @@ int main(int argc, char *argv[])
 				{
 					case '0':
 					{
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[22] = ' ';
 						osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = ' ';
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = ' ';
 					}
 					break;
 					case '1':
 					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = CH_idx_qing_1250_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_qing_1251_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[22] = CH_idx_qing_1250_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = CH_idx_qing_1251_2;
 					}
 					break;
 					case '2':
 					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = CH_idx_zhong_1192_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_zhong_1193_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[22] = CH_idx_zhong_1192_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = CH_idx_zhong_1193_2;
 					}
 					break;
 					case '3':
 					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = CH_idx_zhong_1198_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_zhong_1199_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[22] = CH_idx_zhong_1198_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = CH_idx_zhong_1199_2;
 					}
 					break;
                     case '4':
                     {
-                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = CH_idx_wu_964_1;
-                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_wu_965_2;
+                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[22] = CH_idx_wu_964_1;
+                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = CH_idx_wu_965_2;
                     }
 					break;
 					default:
@@ -4888,26 +4888,26 @@ int main(int argc, char *argv[])
 				// command ID 0x26 Byte5~Byte6 放大倍率，"xx.xX" 占 [5]~[9]，不足 5 字符右补空格
 				magnification_str = HostUARTDevice::instance()->magnification_str;
 				for(int i = 0; i < 5; i++)
-					osd_sensor_viewangle_enhance_viewstate_bricont_ir[11 + i] = (i < (int)magnification_str.size()) ? magnification_str[i] : ' ';
-				osd_sensor_viewangle_enhance_viewstate_bricont_ir[16] = ' ';
+					osd_sensor_viewangle_enhance_viewstate_bricont_ir[10 + i] = (i < (int)magnification_str.size()) ? magnification_str[i] : ' ';
+				osd_sensor_viewangle_enhance_viewstate_bricont_ir[15] = ' ';
 				//command ID 0x21  location ID 0x05   HostUARTDevice::instance()->brigheness_contrast_modify    5
 				brigheness_contrast_modify = HostUARTDevice::instance()->brigheness_contrast_modify;
 				switch (brigheness_contrast_modify)
 				{
 					case '0':
 					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[26] = CH_idx_shou_848_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[27] = CH_idx_shou_849_2;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[28] = CH_idx_dong_326_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[29] = CH_idx_dong_327_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_shou_848_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[26] = CH_idx_shou_849_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[27] = CH_idx_dong_326_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[28] = CH_idx_dong_327_2;
 					}
 					break;
 					case '1':
 					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[26] = CH_idx_zi_1220_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[27] = CH_idx_zi_1221_2;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[28] = CH_idx_dong_326_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[29] = CH_idx_dong_327_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_zi_1220_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[26] = CH_idx_zi_1221_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[27] = CH_idx_dong_326_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[28] = CH_idx_dong_327_2;
 					}
 					break;
 					default:
@@ -5273,7 +5273,7 @@ int main(int argc, char *argv[])
 				focus_str = HostUARTDevice::instance()->focus_str;
 				for(int i = 0; i < 5; i++)
 				{
-					osd_sensor_viewangle_enhance_viewstate_bricont_ir[17 + i] = (i < (int)focus_str.size()) ? focus_str[i] : 0;
+					osd_sensor_viewangle_enhance_viewstate_bricont_ir[16 + i] = (i < (int)focus_str.size()) ? focus_str[i] : 0;
 				}
 				osd_pos_sensor_viewangle_enhance_viewstate_bricont_ir.str_arr = osd_sensor_viewangle_enhance_viewstate_bricont_ir;
 				update_OSD_chinese(osd_pos_sensor_viewangle_enhance_viewstate_bricont_ir, OSD_BRAM_HANDLE);
