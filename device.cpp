@@ -996,13 +996,13 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
         {
             if(read_product_flag == 0x01)
             {
-                uint8_t version_a = 0;	//	20230906 zzy  0 20241021 zzy   0 20250428 zzy
-                uint8_t version_b = 1;	//	20230906 zzy  1 20241021 zzy   1 20250428 zzy
+                uint8_t version_a = 1;	//	20230906 zzy  0 20241021 zzy   0 20250428 zzy
+                uint8_t version_b = 0;	//	20230906 zzy  1 20241021 zzy   1 20250428 zzy
                 uint8_t version_c = 0;	//	20230906 zzy  0 20241021 zzy   0 20250606 zzy
-                uint8_t version_d = 2;	//	20230906 zzy  0 20241021 zzy   1 20250606 zzy
-                uint8_t version_year = 25;      // 23  24  24  25
-                uint8_t version_month = 12;     // 09  08  11  04
-                uint8_t version_day = 18;       // 03  16  27  28
+                uint8_t version_d = 0;	//	20230906 zzy  0 20241021 zzy   1 20250606 zzy
+                uint8_t version_year = 26;      // 23  24  24  25
+                uint8_t version_month = 06;     // 09  08  11  04
+                uint8_t version_day = 22;       // 03  16  27  28
                 uint8_t params[5] = {(uint8_t) ((version_a << 2) | (version_b >> 4)), ((version_b << 4) | (version_c >> 2)), ( (version_c << 6) | version_d), (uint8_t) ((version_year << 1) | (version_month >> 3)), (uint8_t) ((version_month << 5) | version_day)};
                 //write_command(0x15, SIZEOF(params), params);
                 write_command_new(0x15, SIZEOF(params), params, write_data, &write_data_length);

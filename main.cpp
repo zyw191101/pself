@@ -1276,7 +1276,7 @@ int main(int argc, char *argv[])
     log_info("%s (%s %s)", app_name, __DATE__, __TIME__);
     log_info("Command line: %s", join(argc, argv, " ").c_str());
 
-    const auto software_version = "HSJ Version 0.1.0.2, 2026-06-22";
+    const auto software_version = "HSJ Version 1.0.0.0, 2026-06-22";
     log_info("%s", software_version);
 #ifdef OS_UNIX
     // video_init();
