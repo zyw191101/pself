@@ -288,7 +288,7 @@ void osd_init_chinese()
 	osd_pos_yaw.config.para.Enable = 1;
 	osd_pos_yaw.config.para.valid_length = 0;
 	osd_pos_yaw.config.para.ver_y = 20;
-	osd_pos_yaw.config.para.hor_x = 990;
+	osd_pos_yaw.config.para.hor_x = 990+100;
 	osd_pos_yaw.str_arr = osd_blank;
 	update_OSD_chinese(osd_pos_yaw, OSD_BRAM_HANDLE);
 
@@ -297,7 +297,7 @@ void osd_init_chinese()
 	osd_pos_pitch.config.para.Enable = 1;
 	osd_pos_pitch.config.para.valid_length = 0;
 	osd_pos_pitch.config.para.ver_y = 67;
-	osd_pos_pitch.config.para.hor_x = 990;
+	osd_pos_pitch.config.para.hor_x = 990+100;
 	osd_pos_pitch.str_arr = osd_blank;
 	update_OSD_chinese(osd_pos_pitch, OSD_BRAM_HANDLE);
 
@@ -306,7 +306,7 @@ void osd_init_chinese()
 	osd_pos_laser_work_mode.config.para.Enable = 1;
 	osd_pos_laser_work_mode.config.para.valid_length = 0;
 	osd_pos_laser_work_mode.config.para.ver_y = 20;
-	osd_pos_laser_work_mode.config.para.hor_x = 1485;
+	osd_pos_laser_work_mode.config.para.hor_x = 1485+100;
 	osd_pos_laser_work_mode.str_arr = osd_blank;
 	update_OSD_chinese(osd_pos_laser_work_mode, OSD_BRAM_HANDLE);
 
