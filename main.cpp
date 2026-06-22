@@ -4823,26 +4823,26 @@ int main(int argc, char *argv[])
 					break;
 					case '1':
 					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_qing_1250_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_qing_1251_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_yi_1066_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_yi_1067_2;
 					}
 					break;
 					case '2':
 					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_zhong_1192_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_zhong_1193_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_er_344_1	;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_er_345_2;
 					}
 					break;
 					case '3':
 					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_zhong_1198_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_zhong_1199_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_san_800_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_san_801_2;
 					}
 					break;
                     case '4':
                     {
-                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_wu_964_1;
-                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_wu_965_2;
+                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_si_872_1;
+                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_si_873_2;
                     }
 					break;
 					default:
