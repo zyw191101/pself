@@ -4817,32 +4817,32 @@ int main(int argc, char *argv[])
 				{
 					case '0':
 					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[22] = ' ';
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = ' ';
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = ' ';
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = ' ';
 					}
 					break;
 					case '1':
 					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[22] = CH_idx_qing_1250_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = CH_idx_qing_1251_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_qing_1250_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_qing_1251_2;
 					}
 					break;
 					case '2':
 					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[22] = CH_idx_zhong_1192_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = CH_idx_zhong_1193_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_zhong_1192_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_zhong_1193_2;
 					}
 					break;
 					case '3':
 					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[22] = CH_idx_zhong_1198_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = CH_idx_zhong_1199_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_zhong_1198_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_zhong_1199_2;
 					}
 					break;
                     case '4':
                     {
-                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[22] = CH_idx_wu_964_1;
-                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = CH_idx_wu_965_2;
+                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_wu_964_1;
+                        osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_wu_965_2;
                     }
 					break;
 					default:
@@ -4898,18 +4898,18 @@ int main(int argc, char *argv[])
 				{
 					case '0':
 					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_shou_848_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_shou_849_2;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[26] = CH_idx_dong_326_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[27] = CH_idx_dong_327_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[28] = CH_idx_shou_848_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[29] = CH_idx_shou_849_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[30] = CH_idx_dong_326_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[31] = CH_idx_dong_327_2;
 					}
 					break;
 					case '1':
 					{
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[24] = CH_idx_zi_1220_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[25] = CH_idx_zi_1221_2;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[26] = CH_idx_dong_326_1;
-						osd_sensor_viewangle_enhance_viewstate_bricont_ir[27] = CH_idx_dong_327_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[28] = CH_idx_zi_1220_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[29] = CH_idx_zi_1221_2;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[30] = CH_idx_dong_326_1;
+						osd_sensor_viewangle_enhance_viewstate_bricont_ir[31] = CH_idx_dong_327_2;
 					}
 					break;
 					default:
@@ -4928,37 +4928,38 @@ int main(int argc, char *argv[])
 					{
 						case 0x05:
 						{
-							osd_sensor_viewangle_enhance_viewstate_bricont_ir[28] = CH_idx_hei_464_1;
-							osd_sensor_viewangle_enhance_viewstate_bricont_ir[29] = CH_idx_hei_465_2;
-							osd_sensor_viewangle_enhance_viewstate_bricont_ir[30] = CH_idx_re_778_1;
-							osd_sensor_viewangle_enhance_viewstate_bricont_ir[31] = CH_idx_re_779_2;
+							osd_inertia_velocitycompensation_workmode[0] = CH_idx_hei_464_1;
+							osd_inertia_velocitycompensation_workmode[1] = CH_idx_hei_465_2;
+							osd_inertia_velocitycompensation_workmode[2] = CH_idx_re_778_1;
+							osd_inertia_velocitycompensation_workmode[3] = CH_idx_re_779_2;
 						}
 						break;
 						case 0x06:
 						{
-							osd_sensor_viewangle_enhance_viewstate_bricont_ir[28] = CH_idx_bai_132_1;
-							osd_sensor_viewangle_enhance_viewstate_bricont_ir[29] = CH_idx_bai_133_2;
-							osd_sensor_viewangle_enhance_viewstate_bricont_ir[30] = CH_idx_re_778_1;
-							osd_sensor_viewangle_enhance_viewstate_bricont_ir[31] = CH_idx_re_779_2;
+							osd_inertia_velocitycompensation_workmode[0] = CH_idx_bai_132_1;
+							osd_inertia_velocitycompensation_workmode[1] = CH_idx_bai_133_2;
+							osd_inertia_velocitycompensation_workmode[2] = CH_idx_re_778_1;
+							osd_inertia_velocitycompensation_workmode[3] = CH_idx_re_779_2;
 						}
 						break;
 						default:
 						{
-							osd_sensor_viewangle_enhance_viewstate_bricont_ir[28] = ' ';
-							osd_sensor_viewangle_enhance_viewstate_bricont_ir[29] = ' ';
-							osd_sensor_viewangle_enhance_viewstate_bricont_ir[30] = ' ';
-							osd_sensor_viewangle_enhance_viewstate_bricont_ir[31] = ' ';
+							osd_inertia_velocitycompensation_workmode[0] = ' ';
+							osd_inertia_velocitycompensation_workmode[1] = ' ';
+							osd_inertia_velocitycompensation_workmode[2] = ' ';
+							osd_inertia_velocitycompensation_workmode[3] = ' ';
 						}
 						break;
 					}
 				}
 				else
 				{
-					osd_sensor_viewangle_enhance_viewstate_bricont_ir[28] = ' ';
-					osd_sensor_viewangle_enhance_viewstate_bricont_ir[29] = ' ';
-					osd_sensor_viewangle_enhance_viewstate_bricont_ir[30] = ' ';
-					osd_sensor_viewangle_enhance_viewstate_bricont_ir[31] = ' ';
+					osd_inertia_velocitycompensation_workmode[0] = ' ';
+					osd_inertia_velocitycompensation_workmode[1] = ' ';
+					osd_inertia_velocitycompensation_workmode[2] = ' ';
+					osd_inertia_velocitycompensation_workmode[3] = ' ';
 				}
+                osd_inertia_velocitycompensation_workmode[4] = ' ';
 				if(show_level==1 || show_level==2 || show_level==5)
 				{
 					osd_pos_sensor_viewangle_enhance_viewstate_bricont_ir.config.para.Enable = 1;
@@ -4967,6 +4968,8 @@ int main(int argc, char *argv[])
 				{
 					osd_pos_sensor_viewangle_enhance_viewstate_bricont_ir.config.para.Enable = 0;
 				}
+                osd_pos_inertia_velocitycompensation_workmode.str_arr = osd_inertia_velocitycompensation_workmode;
+                update_OSD_chinese(osd_pos_inertia_velocitycompensation_workmode, OSD_BRAM_HANDLE);
 				osd_pos_sensor_viewangle_enhance_viewstate_bricont_ir.str_arr = osd_sensor_viewangle_enhance_viewstate_bricont_ir;
 				update_OSD_chinese(osd_pos_sensor_viewangle_enhance_viewstate_bricont_ir, OSD_BRAM_HANDLE);
             }
@@ -4979,198 +4982,197 @@ int main(int argc, char *argv[])
 			{
 				// command ID 0x21  location ID 0x06  inertia state  HostUARTDevice::instance()->inertial_state
 				inertial_state = HostUARTDevice::instance()->inertial_state;
-				if (inertial_state == '0' || show_level == 6)
-				{
-					osd_inertia_velocitycompensation_workmode[0] = ' ';
-					osd_inertia_velocitycompensation_workmode[1] = ' ';
-					osd_inertia_velocitycompensation_workmode[2] = ' ';
-					osd_inertia_velocitycompensation_workmode[3] = ' ';
-				}
-				else if (inertial_state == '1')
-				{
-					osd_inertia_velocitycompensation_workmode[0] = CH_idx_you_1100_1;
-					osd_inertia_velocitycompensation_workmode[1] = CH_idx_you_1101_2;
-					osd_inertia_velocitycompensation_workmode[2] = CH_idx_xiao_1006_1;
-					osd_inertia_velocitycompensation_workmode[3] = CH_idx_xiao_1007_2;
-				}
-				// command ID 0x1b  velocity compensation  HostUARTDevice::instance()->vel_comp
-				vel_comp = HostUARTDevice::instance()->vel_comp;
-				if (vel_comp == 1)
-				{
-					osd_inertia_velocitycompensation_workmode[8] = 'L';
-					osd_inertia_velocitycompensation_workmode[9] = 'M';
-					osd_inertia_velocitycompensation_workmode[10] = 'C';
-				}
-				else if (vel_comp == 2)
-				{
-					osd_inertia_velocitycompensation_workmode[8] = ' ';
-					osd_inertia_velocitycompensation_workmode[9] = ' ';
-					osd_inertia_velocitycompensation_workmode[10] = ' ';
-				}
-				// command ID 0x16  work mode  HostUARTDevice::instance()->work_mode
+                if (inertial_state == '0' || show_level == 6)
+                {
+                    osd_inertia_velocitycompensation_workmode[0+6] = ' ';
+                    osd_inertia_velocitycompensation_workmode[1+6] = ' ';
+                    osd_inertia_velocitycompensation_workmode[2+6] = ' ';
+                    osd_inertia_velocitycompensation_workmode[3+6] = ' ';
+                }
+                else if (inertial_state == '1')
+                {
+                    osd_inertia_velocitycompensation_workmode[0+6] = CH_idx_you_1100_1;
+                    osd_inertia_velocitycompensation_workmode[1+6] = CH_idx_you_1101_2;
+                    osd_inertia_velocitycompensation_workmode[2+6] = CH_idx_xiao_1006_1;
+                    osd_inertia_velocitycompensation_workmode[3+6] = CH_idx_xiao_1007_2;
+                }
+// command ID 0x1b  velocity compensation  HostUARTDevice::instance()->vel_comp
+                vel_comp = HostUARTDevice::instance()->vel_comp;
+                if (vel_comp == 1)
+                {
+                    osd_inertia_velocitycompensation_workmode[8+6] = 'L';
+                    osd_inertia_velocitycompensation_workmode[9+6] = 'M';
+                    osd_inertia_velocitycompensation_workmode[10+6] = 'C';
+                }
+                else if (vel_comp == 2)
+                {
+                    osd_inertia_velocitycompensation_workmode[8+6] = ' ';
+                    osd_inertia_velocitycompensation_workmode[9+6] = ' ';
+                    osd_inertia_velocitycompensation_workmode[10+6] = ' ';
+                }	// command ID 0x16  work mode  HostUARTDevice::instance()->work_mode
 				work_mode = HostUARTDevice::instance()->work_mode;
-				switch (work_mode)
-				{
-					case 0x31:
-					{
-						osd_inertia_velocitycompensation_workmode[14] = CH_idx_chu_244_1;//CH_idx_qi_742_1;
-						osd_inertia_velocitycompensation_workmode[15] = CH_idx_chu_245_2;//CH_idx_qi_743_2;
-						osd_inertia_velocitycompensation_workmode[16] = CH_idx_shi_832_1;//CH_idx_dong_326_1;
-						osd_inertia_velocitycompensation_workmode[17] = CH_idx_shi_833_2;//CH_idx_dong_327_2;
-						osd_inertia_velocitycompensation_workmode[18] = ' ';
-						osd_inertia_velocitycompensation_workmode[19] = ' ';
-						osd_inertia_velocitycompensation_workmode[20] = ' ';
-						osd_inertia_velocitycompensation_workmode[21] = ' ';
-					}
-					break;
-					case 0x32:
-					{
-						osd_inertia_velocitycompensation_workmode[14] = CH_idx_shou_848_1;//CH_idx_guan_430_1;
-						osd_inertia_velocitycompensation_workmode[15] = CH_idx_shou_849_2;//CH_idx_guan_431_2;
-						osd_inertia_velocitycompensation_workmode[16] = CH_idx_dong_326_1;//CH_idx_xing_1026_1;
-						osd_inertia_velocitycompensation_workmode[17] = CH_idx_dong_327_2;//CH_idx_xing_1027_2;
-						osd_inertia_velocitycompensation_workmode[18] = ' ';
-						osd_inertia_velocitycompensation_workmode[19] = ' ';
-						osd_inertia_velocitycompensation_workmode[20] = ' ';
-						osd_inertia_velocitycompensation_workmode[21] = ' ';
-					}
-					break;
-					case 0x33:
-					{
-						osd_inertia_velocitycompensation_workmode[14] = CH_idx_hang_450_1;
-						osd_inertia_velocitycompensation_workmode[15] = CH_idx_hang_451_2;
-						osd_inertia_velocitycompensation_workmode[16] = CH_idx_ce_210_1;
-						osd_inertia_velocitycompensation_workmode[17] = CH_idx_ce_211_2;
-						osd_inertia_velocitycompensation_workmode[18] = ' ';
-						osd_inertia_velocitycompensation_workmode[19] = ' ';
-						osd_inertia_velocitycompensation_workmode[20] = ' ';
-						osd_inertia_velocitycompensation_workmode[21] = ' ';
-					}
-					break;
-					case 0x34:
-					{
-						osd_inertia_velocitycompensation_workmode[14] = CH_idx_hui_490_1;
-						osd_inertia_velocitycompensation_workmode[15] = CH_idx_hui_491_2;
-						osd_inertia_velocitycompensation_workmode[16] = CH_idx_shou_846_1;
-						osd_inertia_velocitycompensation_workmode[17] = CH_idx_shou_847_2;
-						osd_inertia_velocitycompensation_workmode[18] = ' ';
-						osd_inertia_velocitycompensation_workmode[19] = ' ';
-						osd_inertia_velocitycompensation_workmode[20] = ' ';
-						osd_inertia_velocitycompensation_workmode[21] = ' ';
-					}
-					break;
-					case 0x35:
-					{
-						osd_inertia_velocitycompensation_workmode[14] = CH_idx_zi_1220_1;
-						osd_inertia_velocitycompensation_workmode[15] = CH_idx_zi_1221_2;
-						osd_inertia_velocitycompensation_workmode[16] = CH_idx_dong_326_1;
-						osd_inertia_velocitycompensation_workmode[17] = CH_idx_dong_327_2;
-						osd_inertia_velocitycompensation_workmode[18] = CH_idx_sao_802_1;
-						osd_inertia_velocitycompensation_workmode[19] = CH_idx_sao_803_2;
-						osd_inertia_velocitycompensation_workmode[20] = CH_idx_miao_686_1;
-						osd_inertia_velocitycompensation_workmode[21] = CH_idx_miao_687_2;
-					}
-					break;
-					case 0x03:
-					case 0x36:
-					{
-						osd_inertia_velocitycompensation_workmode[14] = CH_idx_suo_886_1;
-						osd_inertia_velocitycompensation_workmode[15] = CH_idx_suo_887_2;
-						osd_inertia_velocitycompensation_workmode[16] = CH_idx_ding_320_1;
-						osd_inertia_velocitycompensation_workmode[17] = CH_idx_ding_321_2;
-						osd_inertia_velocitycompensation_workmode[18] = ' ';
-						osd_inertia_velocitycompensation_workmode[19] = ' ';
-						osd_inertia_velocitycompensation_workmode[20] = ' ';
-						osd_inertia_velocitycompensation_workmode[21] = ' ';
-					}
-					break;
-					case 0x37:
-					{
-						osd_inertia_velocitycompensation_workmode[14] = CH_idx_tu_918_1;
-						osd_inertia_velocitycompensation_workmode[15] = CH_idx_tu_919_2;
-						osd_inertia_velocitycompensation_workmode[16] = CH_idx_xiang_998_1;
-						osd_inertia_velocitycompensation_workmode[17] = CH_idx_xiang_999_2;
-						osd_inertia_velocitycompensation_workmode[18] = CH_idx_gen_406_1;
-						osd_inertia_velocitycompensation_workmode[19] = CH_idx_gen_407_2;
-						osd_inertia_velocitycompensation_workmode[20] = CH_idx_zong_1224_1;
-						osd_inertia_velocitycompensation_workmode[21] = CH_idx_zong_1225_2;
-					}
-					break;
-					case 0x38:
-					{
-						osd_inertia_velocitycompensation_workmode[14] = CH_idx_gen_406_1;
-						osd_inertia_velocitycompensation_workmode[15] = CH_idx_gen_407_2;
-						osd_inertia_velocitycompensation_workmode[16] = CH_idx_sou_1252_1;
-						osd_inertia_velocitycompensation_workmode[17] = CH_idx_sou_1253_2;
-						osd_inertia_velocitycompensation_workmode[18] = ' ';
-						osd_inertia_velocitycompensation_workmode[19] = ' ';
-						osd_inertia_velocitycompensation_workmode[20] = ' ';
-						osd_inertia_velocitycompensation_workmode[21] = ' ';
-					}
-					break;
-					case 0x39:
-					{
-						osd_inertia_velocitycompensation_workmode[14] = CH_idx_sou_1252_1;
-						osd_inertia_velocitycompensation_workmode[15] = CH_idx_sou_1253_2;
-						osd_inertia_velocitycompensation_workmode[16] = CH_idx_suo_1254_1;
-						osd_inertia_velocitycompensation_workmode[17] = CH_idx_suo_1255_2;
-						osd_inertia_velocitycompensation_workmode[18] = ' ';
-						osd_inertia_velocitycompensation_workmode[19] = ' ';
-						osd_inertia_velocitycompensation_workmode[20] = ' ';
-						osd_inertia_velocitycompensation_workmode[21] = ' ';
-					}
-					break;
-					case 0x3a:
-					{
-						osd_inertia_velocitycompensation_workmode[14] = CH_idx_suo_886_1;
-						osd_inertia_velocitycompensation_workmode[15] = CH_idx_suo_887_2;
-						osd_inertia_velocitycompensation_workmode[16] = CH_idx_ding_320_1;
-						osd_inertia_velocitycompensation_workmode[17] = CH_idx_ding_321_2;
-						osd_inertia_velocitycompensation_workmode[18] = CH_idx_dang_286_1;
-						osd_inertia_velocitycompensation_workmode[19] = CH_idx_dang_287_2;
-						osd_inertia_velocitycompensation_workmode[20] = CH_idx_qian_750_1;
-						osd_inertia_velocitycompensation_workmode[21] = CH_idx_qian_751_2;
-					}
-					break;
-					case 0x3b:
-					{
-						osd_inertia_velocitycompensation_workmode[14] = CH_idx_di_298_1;
-						osd_inertia_velocitycompensation_workmode[15] = CH_idx_di_299_2;
-						osd_inertia_velocitycompensation_workmode[16] = CH_idx_li_632_1;
-						osd_inertia_velocitycompensation_workmode[17] = CH_idx_li_633_2;
-						osd_inertia_velocitycompensation_workmode[18] = CH_idx_gen_406_1;
-						osd_inertia_velocitycompensation_workmode[19] = CH_idx_gen_407_2;
-						osd_inertia_velocitycompensation_workmode[20] = CH_idx_zong_1224_1;
-						osd_inertia_velocitycompensation_workmode[21] = CH_idx_zong_1225_2;
-					}
-					break;
+                switch (work_mode)
+                {
+                    case 0x31:
+                    {
+                        osd_inertia_velocitycompensation_workmode[18] = CH_idx_chu_244_1;
+                        osd_inertia_velocitycompensation_workmode[19] = CH_idx_chu_245_2;
+                        osd_inertia_velocitycompensation_workmode[20] = CH_idx_shi_832_1;
+                        osd_inertia_velocitycompensation_workmode[21] = CH_idx_shi_833_2;
+                        osd_inertia_velocitycompensation_workmode[22] = ' ';
+                        osd_inertia_velocitycompensation_workmode[23] = ' ';
+                        osd_inertia_velocitycompensation_workmode[24] = ' ';
+                        osd_inertia_velocitycompensation_workmode[25] = ' ';
+                    }
+                        break;
+                    case 0x32:
+                    {
+                        osd_inertia_velocitycompensation_workmode[18] = CH_idx_shou_848_1;
+                        osd_inertia_velocitycompensation_workmode[19] = CH_idx_shou_849_2;
+                        osd_inertia_velocitycompensation_workmode[20] = CH_idx_dong_326_1;
+                        osd_inertia_velocitycompensation_workmode[21] = CH_idx_dong_327_2;
+                        osd_inertia_velocitycompensation_workmode[22] = ' ';
+                        osd_inertia_velocitycompensation_workmode[23] = ' ';
+                        osd_inertia_velocitycompensation_workmode[24] = ' ';
+                        osd_inertia_velocitycompensation_workmode[25] = ' ';
+                    }
+                        break;
+                    case 0x33:
+                    {
+                        osd_inertia_velocitycompensation_workmode[18] = CH_idx_hang_450_1;
+                        osd_inertia_velocitycompensation_workmode[19] = CH_idx_hang_451_2;
+                        osd_inertia_velocitycompensation_workmode[20] = CH_idx_ce_210_1;
+                        osd_inertia_velocitycompensation_workmode[21] = CH_idx_ce_211_2;
+                        osd_inertia_velocitycompensation_workmode[22] = ' ';
+                        osd_inertia_velocitycompensation_workmode[23] = ' ';
+                        osd_inertia_velocitycompensation_workmode[24] = ' ';
+                        osd_inertia_velocitycompensation_workmode[25] = ' ';
+                    }
+                        break;
+                    case 0x34:
+                    {
+                        osd_inertia_velocitycompensation_workmode[18] = CH_idx_hui_490_1;
+                        osd_inertia_velocitycompensation_workmode[19] = CH_idx_hui_491_2;
+                        osd_inertia_velocitycompensation_workmode[20] = CH_idx_shou_846_1;
+                        osd_inertia_velocitycompensation_workmode[21] = CH_idx_shou_847_2;
+                        osd_inertia_velocitycompensation_workmode[22] = ' ';
+                        osd_inertia_velocitycompensation_workmode[23] = ' ';
+                        osd_inertia_velocitycompensation_workmode[24] = ' ';
+                        osd_inertia_velocitycompensation_workmode[25] = ' ';
+                    }
+                        break;
+                    case 0x35:
+                    {
+                        osd_inertia_velocitycompensation_workmode[18] = CH_idx_zi_1220_1;
+                        osd_inertia_velocitycompensation_workmode[19] = CH_idx_zi_1221_2;
+                        osd_inertia_velocitycompensation_workmode[20] = CH_idx_dong_326_1;
+                        osd_inertia_velocitycompensation_workmode[21] = CH_idx_dong_327_2;
+                        osd_inertia_velocitycompensation_workmode[22] = CH_idx_sao_802_1;
+                        osd_inertia_velocitycompensation_workmode[23] = CH_idx_sao_803_2;
+                        osd_inertia_velocitycompensation_workmode[24] = CH_idx_miao_686_1;
+                        osd_inertia_velocitycompensation_workmode[25] = CH_idx_miao_687_2;
+                    }
+                        break;
+                    case 0x03:
+                    case 0x36:
+                    {
+                        osd_inertia_velocitycompensation_workmode[18] = CH_idx_suo_886_1;
+                        osd_inertia_velocitycompensation_workmode[19] = CH_idx_suo_887_2;
+                        osd_inertia_velocitycompensation_workmode[20] = CH_idx_ding_320_1;
+                        osd_inertia_velocitycompensation_workmode[21] = CH_idx_ding_321_2;
+                        osd_inertia_velocitycompensation_workmode[22] = ' ';
+                        osd_inertia_velocitycompensation_workmode[23] = ' ';
+                        osd_inertia_velocitycompensation_workmode[24] = ' ';
+                        osd_inertia_velocitycompensation_workmode[25] = ' ';
+                    }
+                        break;
+                    case 0x37:
+                    {
+                        osd_inertia_velocitycompensation_workmode[18] = CH_idx_tu_918_1;
+                        osd_inertia_velocitycompensation_workmode[19] = CH_idx_tu_919_2;
+                        osd_inertia_velocitycompensation_workmode[20] = CH_idx_xiang_998_1;
+                        osd_inertia_velocitycompensation_workmode[21] = CH_idx_xiang_999_2;
+                        osd_inertia_velocitycompensation_workmode[22] = CH_idx_gen_406_1;
+                        osd_inertia_velocitycompensation_workmode[23] = CH_idx_gen_407_2;
+                        osd_inertia_velocitycompensation_workmode[24] = CH_idx_zong_1224_1;
+                        osd_inertia_velocitycompensation_workmode[25] = CH_idx_zong_1225_2;
+                    }
+                        break;
+                    case 0x38:
+                    {
+                        osd_inertia_velocitycompensation_workmode[18] = CH_idx_gen_406_1;
+                        osd_inertia_velocitycompensation_workmode[19] = CH_idx_gen_407_2;
+                        osd_inertia_velocitycompensation_workmode[20] = CH_idx_sou_1252_1;
+                        osd_inertia_velocitycompensation_workmode[21] = CH_idx_sou_1253_2;
+                        osd_inertia_velocitycompensation_workmode[22] = ' ';
+                        osd_inertia_velocitycompensation_workmode[23] = ' ';
+                        osd_inertia_velocitycompensation_workmode[24] = ' ';
+                        osd_inertia_velocitycompensation_workmode[25] = ' ';
+                    }
+                        break;
+                    case 0x39:
+                    {
+                        osd_inertia_velocitycompensation_workmode[18] = CH_idx_sou_1252_1;
+                        osd_inertia_velocitycompensation_workmode[19] = CH_idx_sou_1253_2;
+                        osd_inertia_velocitycompensation_workmode[20] = CH_idx_suo_1254_1;
+                        osd_inertia_velocitycompensation_workmode[21] = CH_idx_suo_1255_2;
+                        osd_inertia_velocitycompensation_workmode[22] = ' ';
+                        osd_inertia_velocitycompensation_workmode[23] = ' ';
+                        osd_inertia_velocitycompensation_workmode[24] = ' ';
+                        osd_inertia_velocitycompensation_workmode[25] = ' ';
+                    }
+                        break;
+                    case 0x3a:
+                    {
+                        osd_inertia_velocitycompensation_workmode[18] = CH_idx_suo_886_1;
+                        osd_inertia_velocitycompensation_workmode[19] = CH_idx_suo_887_2;
+                        osd_inertia_velocitycompensation_workmode[20] = CH_idx_ding_320_1;
+                        osd_inertia_velocitycompensation_workmode[21] = CH_idx_ding_321_2;
+                        osd_inertia_velocitycompensation_workmode[22] = CH_idx_dang_286_1;
+                        osd_inertia_velocitycompensation_workmode[23] = CH_idx_dang_287_2;
+                        osd_inertia_velocitycompensation_workmode[24] = CH_idx_qian_750_1;
+                        osd_inertia_velocitycompensation_workmode[25] = CH_idx_qian_751_2;
+                    }
+                        break;
+                    case 0x3b:
+                    {
+                        osd_inertia_velocitycompensation_workmode[18] = CH_idx_di_298_1;
+                        osd_inertia_velocitycompensation_workmode[19] = CH_idx_di_299_2;
+                        osd_inertia_velocitycompensation_workmode[20] = CH_idx_li_632_1;
+                        osd_inertia_velocitycompensation_workmode[21] = CH_idx_li_633_2;
+                        osd_inertia_velocitycompensation_workmode[22] = CH_idx_gen_406_1;
+                        osd_inertia_velocitycompensation_workmode[23] = CH_idx_gen_407_2;
+                        osd_inertia_velocitycompensation_workmode[24] = CH_idx_zong_1224_1;
+                        osd_inertia_velocitycompensation_workmode[25] = CH_idx_zong_1225_2;
+                    }
+                        break;
                     case 0x3c:
                     {
-						osd_inertia_velocitycompensation_workmode[14] = CH_idx_sui_882_1;
-						osd_inertia_velocitycompensation_workmode[15] = CH_idx_sui_883_2;
-						osd_inertia_velocitycompensation_workmode[16] = CH_idx_dong_326_1;
-						osd_inertia_velocitycompensation_workmode[17] = CH_idx_dong_327_2;
-						osd_inertia_velocitycompensation_workmode[18] = ' ';
-						osd_inertia_velocitycompensation_workmode[19] = ' ';
-						osd_inertia_velocitycompensation_workmode[20] = ' ';
-						osd_inertia_velocitycompensation_workmode[21] = ' ';
+                        osd_inertia_velocitycompensation_workmode[18] = CH_idx_sui_882_1;
+                        osd_inertia_velocitycompensation_workmode[19] = CH_idx_sui_883_2;
+                        osd_inertia_velocitycompensation_workmode[20] = CH_idx_dong_326_1;
+                        osd_inertia_velocitycompensation_workmode[21] = CH_idx_dong_327_2;
+                        osd_inertia_velocitycompensation_workmode[22] = ' ';
+                        osd_inertia_velocitycompensation_workmode[23] = ' ';
+                        osd_inertia_velocitycompensation_workmode[24] = ' ';
+                        osd_inertia_velocitycompensation_workmode[25] = ' ';
                     }
                         break;
                     case 0x3d:
                     {
-						osd_inertia_velocitycompensation_workmode[14] = CH_idx_qian_750_1;
-						osd_inertia_velocitycompensation_workmode[15] = CH_idx_qian_751_2;
-						osd_inertia_velocitycompensation_workmode[16] = CH_idx_shi_840_1;
-						osd_inertia_velocitycompensation_workmode[17] = CH_idx_shi_841_2;
-						osd_inertia_velocitycompensation_workmode[18] = ' ';
-						osd_inertia_velocitycompensation_workmode[19] = ' ';
-						osd_inertia_velocitycompensation_workmode[20] = ' ';
-						osd_inertia_velocitycompensation_workmode[21] = ' ';
+                        osd_inertia_velocitycompensation_workmode[18] = CH_idx_qian_750_1;
+                        osd_inertia_velocitycompensation_workmode[19] = CH_idx_qian_751_2;
+                        osd_inertia_velocitycompensation_workmode[20] = CH_idx_shi_840_1;
+                        osd_inertia_velocitycompensation_workmode[21] = CH_idx_shi_841_2;
+                        osd_inertia_velocitycompensation_workmode[22] = ' ';
+                        osd_inertia_velocitycompensation_workmode[23] = ' ';
+                        osd_inertia_velocitycompensation_workmode[24] = ' ';
+                        osd_inertia_velocitycompensation_workmode[25] = ' ';
                     }
                         break;
-					default:
-						break;
-				}
+                    default:
+                        break;
+                }
 				if(show_level==1 || show_level==2 || show_level==5 || show_level==6)
 				{
 					osd_pos_inertia_velocitycompensation_workmode.config.para.Enable = 1;
@@ -5271,10 +5273,11 @@ int main(int argc, char *argv[])
 			if(focus_str.compare(HostUARTDevice::instance()->focus_str) != 0)
 			{
 				focus_str = HostUARTDevice::instance()->focus_str;
-				for(int i = 0; i < 6; i++)
+				for(int i = 0; i < 3; i++)
 				{
 					osd_sensor_viewangle_enhance_viewstate_bricont_ir[20 + i] = (i < (int)focus_str.size()) ? focus_str[i] : 0;
 				}
+                osd_sensor_viewangle_enhance_viewstate_bricont_ir[23] = ' ';
 				osd_pos_sensor_viewangle_enhance_viewstate_bricont_ir.str_arr = osd_sensor_viewangle_enhance_viewstate_bricont_ir;
 				update_OSD_chinese(osd_pos_sensor_viewangle_enhance_viewstate_bricont_ir, OSD_BRAM_HANDLE);
 			}

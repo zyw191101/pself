@@ -52,9 +52,7 @@ OSD_INFO osd_pos_version;
 
 unsigned short osd_blank[32]        =      {0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 unsigned short osd_sensor_viewangle_enhance_viewstate_bricont_ir[32]     =      {0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
-unsigned short osd_inertia_velocitycompensation_workmode[32]             =      {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ','L','M','C',' ',' ',' ',CH_idx_shou_848_1,CH_idx_shou_849_2,CH_idx_dong_326_1,CH_idx_dong_327_2,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
-unsigned short osd_tv[32]           =       {CH_idx_dian_312_1, CH_idx_dian_313_2, CH_idx_shi_840_1, CH_idx_shi_841_2, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
-unsigned short osd_ir[32]           =       {CH_idx_hong_468_1, CH_idx_hong_469_2, CH_idx_wai_926_1, CH_idx_wai_927_2, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
+unsigned short osd_inertia_velocitycompensation_workmode[32] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ','L', 'M', 'C', ' ', CH_idx_shou_848_1, CH_idx_shou_849_2, CH_idx_dong_326_1, CH_idx_dong_327_2, ' ',0, 0, 0, 0, 0, 0, 0, 0, 0};unsigned short osd_ir[32]           =       {CH_idx_hong_468_1, CH_idx_hong_469_2, CH_idx_wai_926_1, CH_idx_wai_927_2, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 unsigned short osd_light[32]        =       {CH_idx_qing_1250_1, CH_idx_qing_1251_2, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 unsigned short osd_medium[32]       =       {CH_idx_zhong_1192_1, CH_idx_zhong_1193_2, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 unsigned short osd_heavy[32]        =       {CH_idx_zhong_1198_1, CH_idx_zhong_1199_2, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
