@@ -5271,9 +5271,9 @@ int main(int argc, char *argv[])
 			if(focus_str.compare(HostUARTDevice::instance()->focus_str) != 0)
 			{
 				focus_str = HostUARTDevice::instance()->focus_str;
-				for(int i = 0; i < 5; i++)
+				for(int i = 0; i < 6; i++)
 				{
-					osd_sensor_viewangle_enhance_viewstate_bricont_ir[17 + i] = (i < (int)focus_str.size()) ? focus_str[i] : 0;
+					osd_sensor_viewangle_enhance_viewstate_bricont_ir[20 + i] = (i < (int)focus_str.size()) ? focus_str[i] : 0;
 				}
 				osd_pos_sensor_viewangle_enhance_viewstate_bricont_ir.str_arr = osd_sensor_viewangle_enhance_viewstate_bricont_ir;
 				update_OSD_chinese(osd_pos_sensor_viewangle_enhance_viewstate_bricont_ir, OSD_BRAM_HANDLE);

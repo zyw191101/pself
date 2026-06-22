@@ -1319,7 +1319,7 @@ void HostUARTDevice::read_command(uint8_t command_id, uint32_t param_count, cons
         uint16_t focus;
         PARSE_DATA_LE(params, &focus);
         this->focus_sensor_id = sensor_id;
-        this->focus_str = pad_str(format("%d", focus), 5, -1);
+        this->focus_str = pad_str(format("%.2lf", focus), 6, -1);
     }
         break;
     case 0x49:
