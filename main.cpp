@@ -5701,7 +5701,7 @@ int main(int argc, char *argv[])
                         }
                         if(laser_stop_time < 0)
                         {
-                            // 刚切到停止，记录时间，开始5秒倒计时
+                            // 刚切到停止，记录时间，开始10秒倒计时
                             laser_stop_time = get_wall_time();
                             laser_five_sec_showing = true;
 //                            printf("[OSD] case 0x09 开始计时: laser_had_worked=%d laser_stop_time=%.2f laser_five_sec_showing=%d\n", (int)laser_had_worked, laser_stop_time, (int)laser_five_sec_showing);
@@ -5710,17 +5710,17 @@ int main(int argc, char *argv[])
 
                         if(laser_five_sec_showing)
                         {
-                            if(get_wall_time() - laser_stop_time < 5.0)
+                            if(get_wall_time() - laser_stop_time < 10.0)
                             {
-                                // 5秒内：显示激光准备+距离
+                                // 10秒内：显示激光准备+距离
                                 osd_pos_laser_work_mode.str_arr = osd_laser_work_five_seconds_stop;
                                 update_OSD_chinese(osd_pos_laser_work_mode, OSD_BRAM_HANDLE);
                             }
                             else
                             {
-                                // 5秒到：消隐，停止更新
+                                // 10秒到：消隐，停止更新
                                 laser_five_sec_showing = false;
-                                laser_had_worked = false;  // 5秒结束，重置，回到初始状态
+                                laser_had_worked = false;  // 10秒结束，重置，回到初始状态
 //                                printf("[OSD] case 0x09 初始状态(未曾工作) → osd_laser_work_mode_stop\n");
                                 osd_pos_laser_work_mode.str_arr = osd_laser_work_mode_stop;
                                 update_OSD_chinese(osd_pos_laser_work_mode, OSD_BRAM_HANDLE);
